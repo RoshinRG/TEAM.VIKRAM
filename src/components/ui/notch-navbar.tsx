@@ -57,8 +57,10 @@ function NavLink({
 export function NotchNavbar({
   className,
   logo,
-  ...props
-}: React.HTMLAttributes<HTMLElement> & { logo?: React.ReactNode }) {
+}: {
+  className?: string;
+  logo?: React.ReactNode;
+}) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -101,11 +103,6 @@ export function NotchNavbar({
         animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className={cn("fixed inset-x-0 top-0 z-50 flex h-20 px-0", className)}
- copilot/fix-github-actions-build-job
-        {...props}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(props as any)}
- main
       >
         <div className={cn("relative z-20 h-10 min-w-0 flex-1", surface)}>
           <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none">
@@ -131,7 +128,7 @@ export function NotchNavbar({
         </div>
 
         <div className="relative z-10 -ml-px flex h-20 shrink-0">
-          <div className="relative h-full w-[50px] shrink-0">
+          <div className="relative h-full w-12.5 shrink-0">
             <div
               className={cn("absolute inset-0", surface)}
               style={{ clipPath: "path('M0 0 H50 V80 C25 80 25 40 0 40 Z')" }}
@@ -233,7 +230,7 @@ export function NotchNavbar({
             </div>
           </div>
 
-          <div className="relative -ml-px h-full w-[50px] shrink-0">
+          <div className="relative -ml-px h-full w-12.5 shrink-0">
             <div
               className={cn("absolute inset-0", surface)}
               style={{ clipPath: "path('M0 0 H50 V40 C25 40 25 80 0 80 Z')" }}

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, Orbitron } from "next/font/google";
-import dynamic from "next/dynamic";
+import type { ReactNode } from "react";
 import { NotchNavbar } from "@/components/ui/notch-navbar";
 import { Footer } from "@/components/layout/Footer";
-
+import { VideoBackgroundClient } from "@/components/home/VideoBackgroundClient";
 import { SITE } from "@/lib/data";
 import "./globals.css";
 
@@ -25,11 +25,6 @@ const orbitron = Orbitron({
   display: "swap",
 });
 
-// Global video background loaded client-side only so it doesn't block SSR
-const VideoBackground = dynamic(
-  () => import("@/components/home/VideoBackground").then((m) => m.VideoBackground),
-  { ssr: false }
-);
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://teamvikram.example.com"),
@@ -70,7 +65,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en" className="bg-void text-frost">
@@ -78,7 +73,7 @@ export default function RootLayout({
         className={`${spaceGrotesk.variable} ${inter.variable} ${orbitron.variable} min-h-screen bg-transparent font-body antialiased`}
       >
         {/* Global SpaceX Starship background video with audio controls */}
-        <VideoBackground className="fixed inset-0 z-0" />
+        <VideoBackgroundClient className="fixed inset-0 z-0" />
         <NotchNavbar />
         <main className="relative z-10">{children}</main>
         <Footer />

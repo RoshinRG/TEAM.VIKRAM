@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
 
 :root {
   /* Core Modern Monochrome */
@@ -106,11 +105,11 @@ body {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-frost px-6 py-3 font-display text-sm font-semibold uppercase tracking-wider text-void transition hover:bg-frost-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-frost;
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-frost px-6 py-3 font-display text-sm font-semibold uppercase tracking-wider text-void transition hover:bg-frost-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-frost;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-moon/30 bg-transparent px-6 py-3 font-display text-sm font-semibold uppercase tracking-wider text-frost transition hover:border-moon hover:bg-surface/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moon;
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-moon/30 bg-transparent px-6 py-3 font-display text-sm font-semibold uppercase tracking-wider text-frost transition hover:border-moon hover:bg-surface/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moon;
   }
 
   .text-balance {

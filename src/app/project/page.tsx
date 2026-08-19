@@ -229,8 +229,8 @@ export default function ProjectPage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {MISSION_LOG.map((entry, i) => (
               <Reveal key={entry.title} delay={i * 0.05}>
-                <Box flush className="overflow-hidden !p-0">
-                  <div className="relative flex aspect-[16/10] items-center justify-center bg-gradient-to-br from-indigo/30 to-void">
+                <Box flush className="overflow-hidden p-0!">
+                  <div className="relative flex aspect-16/10 items-center justify-center bg-linear-to-br from-indigo/30 to-void">
                     <div className="absolute inset-0 grid-overlay opacity-50" />
                     <span className="relative font-mono text-[10px] tracking-[0.25em] text-moon/40">
                       IMG_LOG_{String(i + 1).padStart(2, "0")}
@@ -267,7 +267,7 @@ export default function ProjectPage() {
             />
           </Reveal>
           <Reveal delay={0.1}>
-            <Box flush className="!p-0 overflow-hidden">
+            <Box flush className="p-0! overflow-hidden">
               <div className="flex items-center justify-between border-b border-moon/15 px-4 py-2">
                 <span className="hud-label">GS · Simulated Link</span>
                 <span className="flex items-center gap-1.5 font-mono text-[10px] text-indigo-glow">
