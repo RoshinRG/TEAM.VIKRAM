@@ -1,0 +1,41 @@
+{
+  "name": "team-vikram",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "clsx": "^2.1.1",
+    "framer-motion": "^13.1.0",
+    "gsap": "^3.15.0",
+    "lucide-react": "^1.32.0",
+    "next": "16.3.1",
+    "react": "^19",
+    "react-dom": "^19",
+    "tailwind-merge": "^3.6.0",
+    "three": "^0.185.1",
+    "three-mesh-bvh": "^0.9.14"
+  },
+  "devDependencies": {
+    "@types/node": "^26",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.185.4",
+    "autoprefixer": "^10.5.4",
+    "eslint": "^10",
+    "eslint-config-next": "16.3.1",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7"
+  },
+  "allowScripts": {
+    "unrs-resolver@1.12.2": true
+  }
+}
