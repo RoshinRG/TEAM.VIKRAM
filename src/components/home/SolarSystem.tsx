@@ -77,9 +77,11 @@ function PlanetItem({ planet }: { planet: PlanetData }) {
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Mesh>(null);
   const moonRef = useRef<THREE.Mesh>(null);
+  const elapsedRef = useRef(0);
 
-  useFrame((state, delta) => {
-    const elapsed = state.clock.getElapsedTime();
+  useFrame((_, delta) => {
+    elapsedRef.current += delta;
+    const elapsed = elapsedRef.current;
     // Orbital movement
     if (groupRef.current) {
       groupRef.current.rotation.y = elapsed * planet.speed * 0.35;

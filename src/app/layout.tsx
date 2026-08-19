@@ -68,7 +68,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-void text-frost">
+    <html lang="en" className="bg-void text-frost" data-scroll-behavior="smooth">
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${orbitron.variable} min-h-screen bg-transparent font-body antialiased`}
       >

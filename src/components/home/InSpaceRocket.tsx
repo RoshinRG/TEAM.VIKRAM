@@ -49,10 +49,13 @@ function RaptorModel() {
     });
   }, [cloned]);
 
+  const elapsedRef = useRef(0);
+
   // Rotate around own Y-axis only spinRef sits at the centred origin
-  useFrame((state) => {
+  useFrame((_, delta) => {
     if (!spinRef.current) return;
-    spinRef.current.rotation.y = state.clock.elapsedTime * 0.25;
+    elapsedRef.current += delta;
+    spinRef.current.rotation.y = elapsedRef.current * 0.25;
   });
 
   // Structure: spinRef (rotation) → Center (re-centres bbox to origin) → scaled model
