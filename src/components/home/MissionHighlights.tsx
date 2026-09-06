@@ -9,13 +9,13 @@ export function MissionHighlights() {
       <div className="container-mission">
         <Reveal>
           <SectionHeading
-            eyebrow="Mission Highlights"
-            title="From selection to flight software"
-            description="Three chapters that define where we are on the path to rocketry, drones, and CanSat."
+            eyebrow="Achievements & Projects"
+            title="Competition results and active missions"
+            description="National recognition, research publication, and the flight hardware we're building for IN-SPACe 2026."
           />
         </Reveal>
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2">
           {MISSION_HIGHLIGHTS.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.08}>
               <Box className="flex h-full flex-col border-l-2 border-l-white/60">

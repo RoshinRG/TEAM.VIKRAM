@@ -3,18 +3,24 @@ import { PerspectiveCarousel } from "@/components/ui/perspective-carousel";
 import { Box } from "@/components/ui/box";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { MENTOR, SITE, TEAM_MEMBERS } from "@/lib/data";
+import { MENTOR, MENTOR_PARTNER, ABOUT, SITE, TEAM_MEMBERS } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Team",
   description: `Meet ${SITE.name} student engineers.`,
 };
 
+const MEMBER_MEDIA: Record<string, { video?: string }> = {
+  "Sanjay C": { video: "/videos/snajay.mp4" },
+};
+
 const carouselItems = TEAM_MEMBERS.map((m, i) => ({
   src: `/images/member-${(i % 9) + 1}.svg`,
   title: `${m.name} ${m.role}`,
   alt: `${m.name}, ${m.subsystem}`,
+  ...MEMBER_MEDIA[m.name],
 }));
+
 
 export default function TeamPage() {
   return (
@@ -25,13 +31,53 @@ export default function TeamPage() {
             <SectionHeading
               eyebrow="The Crew & Divisions"
               title="Team Vikram Engineers"
-              description={`Born at ${SITE.college}, Team Vikram brings together student engineers across three core aerospace divisions: High-Power Sounding Rocketry, Autonomous Drone Technology, and CanSat Satellite Systems.`}
+              description={ABOUT.intro}
             />
           </Reveal>
         </div>
       </section>
 
-      <section className="section-pad !py-10 border-b border-white/10 carbon-fiber">
+      <section className="section-pad border-b border-white/10" style={{ background: "rgba(0,0,0,0.55)" }}>
+        <div className="container-mission">
+          <Reveal>
+            <SectionHeading
+              eyebrow={ABOUT.eyebrow}
+              title={ABOUT.title}
+              description={ABOUT.mission}
+            />
+          </Reveal>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <Reveal delay={0.06}>
+              <Box className="h-full border-l-2 border-l-white/60">
+                <p className="hud-label mb-4 text-white/70">Core Expertise</p>
+                <ul className="space-y-2">
+                  {ABOUT.expertise.map((area) => (
+                    <li key={area} className="flex items-center gap-2 text-sm text-white/85">
+                      <span className="h-1 w-1 rounded-full bg-white/60" />
+                      {area}
+                    </li>
+                  ))}
+                </ul>
+              </Box>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <Box className="h-full border-l-2 border-l-white/60">
+                <p className="hud-label mb-4 text-white/70">Competition Platforms</p>
+                <ul className="space-y-2">
+                  {ABOUT.competitions.map((comp) => (
+                    <li key={comp} className="flex items-start gap-2 text-sm text-white/85">
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-white/60" />
+                      {comp}
+                    </li>
+                  ))}
+                </ul>
+              </Box>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad py-10! border-b border-white/10 carbon-fiber">
         <div className="container-mission">
           <Reveal>
             <p className="hud-label mb-6 text-center text-white/70">Crew carousel</p>
@@ -42,7 +88,7 @@ export default function TeamPage() {
               defaultActiveIndex={Math.min(2, carouselItems.length - 1)}
               slideWidth={280}
               loop
-              className="h-[680px] text-white"
+              className="h-170 text-white"
               viewportClassName="[mask-image:linear-gradient(to_right,transparent_0%,black_15%,black_85%,transparent_100%)]"
               labelClassName="font-mono text-xs tracking-wide text-white/80"
               imageClassName="border border-white/20"
@@ -52,7 +98,7 @@ export default function TeamPage() {
         </div>
       </section>
 
-      <section className="section-pad !py-14 border-b border-white/10" style={{ background: "rgba(0,0,0,0.6)" }}>
+      <section className="section-pad py-14! border-b border-white/10" style={{ background: "rgba(0,0,0,0.6)" }}>
         <div className="container-mission">
           <Reveal>
             <h2 className="mb-8 font-display text-2xl font-bold text-white">
@@ -79,7 +125,7 @@ export default function TeamPage() {
       <section className="section-pad" style={{ background: "rgba(0,0,0,0.5)" }}>
         <div className="container-mission">
           <Reveal>
-            <Box glow className="!p-8 sm:!p-10">
+            <Box glow className="p-8! sm:p-10!">
               <p className="hud-label mb-3 text-white/60">Faculty Advisor</p>
               <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
                 {MENTOR.name}
@@ -88,6 +134,23 @@ export default function TeamPage() {
               <p className="text-sm text-white/70">{MENTOR.dept}</p>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/85">
                 {MENTOR.note}
+              </p>
+            </Box>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section-pad" style={{ background: "rgba(0,0,0,0.45)" }}>
+        <div className="container-mission">
+          <Reveal>
+            <Box className="p-8! sm:p-10! border-l-2 border-l-white/60">
+              <p className="hud-label mb-3 text-white/60">Mentor Partner</p>
+              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
+                {MENTOR_PARTNER.name}
+              </h2>
+              <p className="mt-1 font-medium text-white/90">{MENTOR_PARTNER.role}</p>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/85">
+                {MENTOR_PARTNER.note}
               </p>
             </Box>
           </Reveal>

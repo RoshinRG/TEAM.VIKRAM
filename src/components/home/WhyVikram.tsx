@@ -1,9 +1,9 @@
-import { WHY_STATS } from "@/lib/data";
-import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
+import { ABOUT } from "@/lib/data";
 import { Box } from "@/components/ui/box";
 import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ChevronRight } from "lucide-react";
 
 export function WhyVikram() {
   return (
@@ -13,27 +13,46 @@ export function WhyVikram() {
         <div className="grid items-start gap-12 lg:grid-cols-2">
           <Reveal>
             <SectionHeading
-              eyebrow="Why Team Vikram"
-              title="Mission-driven student aerospace"
-              description="We build like a flight ops team rigorous reviews, logged tests, and a ground station that treats telemetry as the mission heartbeat. Rocketry, drones, and CanSat are our proving grounds."
+              eyebrow={ABOUT.eyebrow}
+              title={ABOUT.title}
+              description={`${ABOUT.intro} ${ABOUT.mission}`}
             />
           </Reveal>
 
-          <div className="grid grid-cols-2 gap-4">
-            {WHY_STATS.map((stat, i) => (
-              <Reveal key={stat.label} delay={i * 0.06}>
-                <Box className="!p-5 sm:!p-6">
-                  <AnimatedCounter
-                    value={stat.value}
-                    suffix={stat.suffix}
-                    className="font-mono text-3xl font-bold text-white sm:text-4xl"
-                  />
-                  <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-white/70">
-                    {stat.label}
-                  </p>
-                </Box>
-              </Reveal>
-            ))}
+          <div className="space-y-6">
+            <Reveal delay={0.06}>
+              <Box className="p-5! sm:p-6!">
+                <p className="hud-label mb-4 text-white/70">Expertise</p>
+                <div className="flex flex-wrap gap-2">
+                  {ABOUT.expertise.map((area) => (
+                    <span
+                      key={area}
+                      className="inline-flex items-center gap-1.5 rounded-sm border border-white/20 bg-black/80 px-3 py-1.5 font-mono text-[11px] tracking-wider text-white/90"
+                    >
+                      <ChevronRight size={10} className="text-white/60" />
+                      {area}
+                    </span>
+                  ))}
+                </div>
+              </Box>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <Box className="p-5! sm:p-6!">
+                <p className="hud-label mb-4 text-white/70">Competitions</p>
+                <ul className="space-y-2">
+                  {ABOUT.competitions.map((comp) => (
+                    <li
+                      key={comp}
+                      className="flex items-start gap-2 text-sm leading-relaxed text-white/85"
+                    >
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-white/60" />
+                      {comp}
+                    </li>
+                  ))}
+                </ul>
+              </Box>
+            </Reveal>
           </div>
         </div>
       </div>

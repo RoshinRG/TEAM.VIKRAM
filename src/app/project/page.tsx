@@ -4,11 +4,12 @@ import Link from "next/link";
 import {
   Rocket,
   Plane,
+  Satellite,
   ChevronRight,
   type LucideIcon,
 } from "lucide-react";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Boxes, Cpu, Radio, LifeBuoy, MonitorSmartphone, Satellite } from "lucide-react";
+import { Boxes, Cpu, Radio, LifeBuoy, MonitorSmartphone } from "lucide-react";
 import { AsciiGlitchRipple } from "@/components/ui/ascii-glitch-ripple";
 import { Box } from "@/components/ui/box";
 import { Reveal } from "@/components/ui/Reveal";
@@ -18,13 +19,15 @@ import {
   SITE,
   ROCKETRY_DIVISION,
   DRONE_DIVISION,
+  GARUDA_DIVISION,
 } from "@/lib/data";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { SUBSYSTEMS } from "@/lib/data";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Project",
-  description: `Technical overview of ${SITE.name}'s Rocketry, Drone, and CanSat divisions.`,
+  description: `Technical overview of ${SITE.name}'s Rocketry, CanSat, and Drone Technology divisions.`,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -46,12 +49,14 @@ function DivisionSection({
   id,
   accentBorder,
   accentText,
+  milestones,
 }: {
-  division: typeof ROCKETRY_DIVISION | typeof DRONE_DIVISION;
+  division: typeof ROCKETRY_DIVISION | typeof DRONE_DIVISION | typeof GARUDA_DIVISION;
   icon: LucideIcon;
   id: string;
   accentBorder: string;
   accentText: string;
+  milestones?: readonly { label: string; status: "Completed" | "In Progress" }[];
 }) {
   return (
     <section
@@ -82,6 +87,37 @@ function DivisionSection({
             {division.description}
           </p>
         </Reveal>
+
+        {/* Milestone status badges (GARUDA only) */}
+        {milestones && milestones.length > 0 && (
+          <Reveal delay={0.06}>
+            <div>
+              <p className="hud-label mb-4 text-white/70">Mission Status</p>
+              <div className="flex flex-wrap gap-3">
+                {milestones.map((m) => (
+                  <span
+                    key={m.label}
+                    className={cn(
+                      "inline-flex items-center gap-2 rounded-sm border px-3 py-1.5 font-mono text-[11px] tracking-wider",
+                      STATUS_STYLES[m.status] ?? STATUS_STYLES["Design"]
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "h-1.5 w-1.5 rounded-full",
+                        m.status === "Completed"
+                          ? "bg-emerald-400"
+                          : "animate-pulse bg-amber-400"
+                      )}
+                    />
+                    {m.label}
+                    {m.status === "Completed" ? " ✅" : " ⏳"}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        )}
 
         {/* Focus areas */}
         <Reveal delay={0.08}>
@@ -150,9 +186,9 @@ export default function ProjectPage() {
               <span className="text-white/80">One Mission.</span>
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85">
-              Team Vikram operates across Rocketry and Drone Technology
+              Team Vikram operates across Rocketry, CanSat, and Drone Technology —
               each division tackling a distinct slice of aerospace engineering,
-              from high-power propulsion to autonomous navigation.
+              from high-power propulsion to autonomous environmental sensing.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-6">
               <AsciiGlitchRipple
@@ -161,6 +197,13 @@ export default function ProjectPage() {
                 className="font-mono text-sm tracking-wider text-white/90 hover:text-white"
               >
                 Rocketry →
+              </AsciiGlitchRipple>
+              <AsciiGlitchRipple
+                as="a"
+                href="#cansat"
+                className="font-mono text-sm tracking-wider text-white/90 hover:text-white"
+              >
+                CanSat / GARUDA →
               </AsciiGlitchRipple>
               <AsciiGlitchRipple
                 as="a"
@@ -179,6 +222,7 @@ export default function ProjectPage() {
         <div className="container-mission flex items-center overflow-x-auto">
           {[
             { href: "#rocketry", label: "Rocketry", Icon: Rocket },
+            { href: "#cansat", label: "CanSat / GARUDA", Icon: Satellite },
             { href: "#drone", label: "Drone Tech", Icon: Plane },
           ].map(({ href, label, Icon }) => (
             <a
@@ -202,6 +246,16 @@ export default function ProjectPage() {
         accentText="text-orange-400"
       />
 
+      {/* ── CanSat / GARUDA ──────────────────────────────────────── */}
+      <DivisionSection
+        id="cansat"
+        division={GARUDA_DIVISION}
+        icon={Satellite}
+        accentBorder="border-indigo-500/40"
+        accentText="text-indigo-400"
+        milestones={GARUDA_DIVISION.milestones}
+      />
+
       {/* ── Drone Tech ──────────────────────────────────────────── */}
       <DivisionSection
         id="drone"
@@ -210,8 +264,6 @@ export default function ProjectPage() {
         accentBorder="border-sky-500/40"
         accentText="text-sky-400"
       />
-
-      {/* Removed CanSat Division section as requested */}
 
       {/* ── Build Log ───────────────────────────────────────────── */}
       <section

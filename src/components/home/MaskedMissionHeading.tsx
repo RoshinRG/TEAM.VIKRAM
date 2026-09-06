@@ -9,7 +9,7 @@ export function MaskedMissionHeading() {
       <div className="absolute inset-0 bg-nebula opacity-40" aria-hidden />
       <div className="absolute inset-0 grid-overlay opacity-30" aria-hidden />
 
-      <div className="container-mission relative section-pad !py-16 sm:!py-24">
+      <div className="container-mission relative section-pad py-16! sm:py-24!">
         <Reveal>
           <p className="hud-label mb-6 text-center">Mission signature</p>
         </Reveal>
@@ -38,8 +38,8 @@ export function MaskedMissionHeading() {
 
         <Reveal delay={0.15}>
           <p className="mx-auto mt-8 max-w-xl text-center text-sm text-moon/70 sm:text-base">
-            Rocketry, Drone Technology, and CanSat three divisions, one
-            team, competing on the national aerospace stage.
+            Student-led aerospace from REC, Chennai — competing at IN-SPACe
+            Student Competitions and Spaceport America Cup.
           </p>
         </Reveal>
       </div>

@@ -9,6 +9,8 @@ export interface PerspectiveCarouselItem {
   src: string;
   title: string;
   alt?: string;
+  /** Optional video to show instead of the image (path relative to /public) */
+  video?: string;
 }
 
 export interface PerspectiveCarouselProps
@@ -151,19 +153,34 @@ export function PerspectiveCarousel({
                     type="button"
                     aria-label={`Show ${item.title}`}
                     aria-current={isActive ? "true" : undefined}
-                    className="aspect-[3/4] w-full cursor-pointer"
+                    className="aspect-3/4 w-full cursor-pointer"
                     onClick={() => selectSlide(index)}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={item.src}
-                      alt={item.alt ?? item.title}
-                      draggable={false}
-                      className={cn(
-                        "h-full w-full select-none rounded-sm object-cover shadow-xl shadow-black/40",
-                        imageClassName
-                      )}
-                    />
+                    {item.video ? (
+                      <video
+                        src={item.video}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        draggable={false}
+                        className={cn(
+                          "h-full w-full select-none rounded-sm object-cover shadow-xl shadow-black/40",
+                          imageClassName
+                        )}
+                      />
+                    ) : (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={item.src}
+                        alt={item.alt ?? item.title}
+                        draggable={false}
+                        className={cn(
+                          "h-full w-full select-none rounded-sm object-cover shadow-xl shadow-black/40",
+                          imageClassName
+                        )}
+                      />
+                    )}
                   </button>
 
                   <motion.p

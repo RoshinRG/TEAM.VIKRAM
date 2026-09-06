@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Globe } from "lucide-react";
 import {
   GithubIcon,
   InstagramIcon,
@@ -39,7 +39,7 @@ export default function ContactPage() {
 
           <div className="grid gap-12 lg:grid-cols-5">
             <Reveal className="lg:col-span-3">
-              <Box className="!p-6 sm:!p-8">
+              <Box className="p-6! sm:p-8!">
                 <Suspense
                   fallback={
                     <p className="font-mono text-xs tracking-wider text-white/60">
@@ -53,7 +53,7 @@ export default function ContactPage() {
             </Reveal>
 
             <Reveal delay={0.1} className="lg:col-span-2">
-              <Box className="space-y-8 !p-6 sm:!p-8">
+              <Box className="space-y-8 p-6! sm:p-8!">
                 <div>
                   <p className="hud-label mb-4 text-white/70">Direct</p>
                   <ul className="space-y-4 text-sm text-white/85">
@@ -71,6 +71,17 @@ export default function ContactPage() {
                       <span>{SITE.phone}</span>
                     </li>
                     <li className="flex gap-3">
+                      <Globe size={18} className="shrink-0 text-white/60" />
+                      <a
+                        href={SITE.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="transition hover:text-white"
+                      >
+                        teamvikram.in
+                      </a>
+                    </li>
+                    <li className="flex gap-3">
                       <MapPin size={18} className="shrink-0 text-white/60" />
                       <span>
                         {SITE.college}
@@ -83,6 +94,30 @@ export default function ContactPage() {
 
                 <div>
                   <p className="hud-label mb-4 text-white/70">Social</p>
+                  <ul className="mb-4 space-y-2 text-sm text-white/85">
+                    <li>
+                      Instagram:{" "}
+                      <a
+                        href={SITE.socials.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="transition hover:text-white"
+                      >
+                        {SITE.handles.instagram}
+                      </a>
+                    </li>
+                    <li>
+                      LinkedIn:{" "}
+                      <a
+                        href={SITE.socials.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="transition hover:text-white"
+                      >
+                        {SITE.handles.linkedin}
+                      </a>
+                    </li>
+                  </ul>
                   <div className="flex gap-3">
                     {socials.map(({ href, icon: Icon, label }) => (
                       <a

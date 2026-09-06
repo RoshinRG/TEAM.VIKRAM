@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import {
   GithubIcon,
   InstagramIcon,
@@ -17,13 +17,13 @@ const socials = [
 export function Footer() {
   return (
     <footer className="relative border-t border-white/10" style={{ background: "rgba(5,5,8,0.97)" }}>
-      <div className="container-mission section-pad !py-14">
+      <div className="container-mission section-pad py-14!">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
             <BrandLogo height={56} />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
-              Student aerospace team Rocketry, Drone Tech &amp; CanSat 
-              competing in {SITE.competition}.
+              Student aerospace team — Rocketry, Drone Tech &amp; CanSat —
+              competing at IN-SPACe Student Competitions and Spaceport America Cup.
             </p>
           </div>
 
@@ -53,6 +53,20 @@ export function Footer() {
                   className="transition hover:text-white"
                 >
                   {SITE.email}
+                </a>
+              </li>
+              <li className="flex items-start gap-2">
+                <Phone size={16} className="mt-0.5 shrink-0 text-white/50" />
+                <span>{SITE.phone}</span>
+              </li>
+              <li>
+                <a
+                  href={SITE.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-white"
+                >
+                  teamvikram.in
                 </a>
               </li>
               <li className="flex items-start gap-2">

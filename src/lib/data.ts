@@ -2,14 +2,19 @@ export const SITE = {
   name: "Team Vikram",
   tagline: "Rocketry, Drone Technology & CanSat Satellite Systems",
   email: "teamvikram@rajalakshmi.edu.in",
-  phone: "+91 63749 82997",
+  phone: "+91 8610458302 / +91 73586 90685",
+  website: "https://teamvikram.in",
   college: "Rajalakshmi Engineering College",
   location: "Vellore Chennai Rd, Rajalakshmi Nagar, Thandalam, Tamil Nadu 602105",
-  competition: "IN-SPACe Rocketry, Drone and CanSat & Aerospace Championships",
+  competition: "IN-SPACe Student Competitions & Spaceport America Cup",
   socials: {
     instagram: "https://www.instagram.com/teamvikramrec/",
-    linkedin: "https://www.linkedin.com/company/team-vikram-rec/",
+    linkedin: "https://www.linkedin.com/company/teamvikramrec/",
     github: "https://github.com/teamvikram",
+  },
+  handles: {
+    instagram: "@teamvikramrec",
+    linkedin: "linkedin.com/teamvikramrec",
   },
   /** Set to your Formspree form ID, e.g. "xyzabcde" */
   formspreeId: process.env.NEXT_PUBLIC_FORMSPREE_ID || "",
@@ -57,34 +62,52 @@ export const FEATURE_TILES = [
   },
 ] as const;
 
-export const WHY_STATS = [
-  { label: "Rocket & Flight Tests", value: "UPCOMING", suffix: "" },
-  { label: "Active Divisions", value: "UPCOMING", suffix: "" },
-  { label: "Telemetry Range", value: "UPCOMING", suffix: "" },
-  { label: "Engineers & Crew", value: "UPCOMING", suffix: "" },
-] as const;
+export const ABOUT = {
+  eyebrow: "Who We Are",
+  title: "Student-led aerospace engineering",
+  intro:
+    "Team Vikram is a student-led aerospace engineering team from Rajalakshmi Engineering College (REC), Chennai — building flight hardware across rocketry, CanSat, and drone systems.",
+  expertise: [
+    "Aerodynamics",
+    "Structures",
+    "Propulsion",
+    "Avionics",
+    "Simulation",
+  ] as const,
+  competitions: [
+    "IN-SPACe Student Competitions (national)",
+    "Spaceport America Cup (international)",
+  ] as const,
+  mission:
+    "Hands-on engineering experience, leadership development, and real-world aerospace exposure for the next generation of engineers.",
+} as const;
 
 export const IMPACT_STATS = [
-  { label: "Design Reviews Passed", value: 6, suffix: "" },
-  { label: "Aerospace Mentors", value: 4, suffix: "" },
-  { label: "Ground Station Uptime", value: 99, suffix: "%" },
+  { label: "National Rank — SIRC 2026", value: 3, suffix: "rd" },
+  { label: "Teams Competed Against", value: 25, suffix: "+" },
+  { label: "Active Projects", value: 2, suffix: "" },
 ] as const;
 
 export const MISSION_HIGHLIGHTS = [
   {
-    title: "Sounding Rocket Static Test",
-    meta: "DIVISION 01 · ROCKETRY",
-    body: "Static thrust test and composite airframe simulation completed for Vikram-1, validating stability and dual-deployment parachute recovery.",
+    title: "SIRC 2026 — 3rd Rank All India",
+    meta: "ACHIEVEMENT · ROCKETRY",
+    body: "Competed at Southern India Rocketry Competition by Space Kidz India against 25+ national teams, securing 3rd Rank All India.",
   },
   {
-    title: "Autonomous Drone Payload Flight",
-    meta: "DIVISION 02 · DRONE TECH",
-    body: "PX4 autonomous waypoint navigation and precision payload release system successfully field-tested under simulated mission constraints.",
+    title: "SMOPS 2026 — ISRO & ASI Conference",
+    meta: "ACHIEVEMENT · RESEARCH",
+    body: "Presented \"Challenges in Autonomous Satellites\" at the International Conference on Spacecraft Mission Operations, jointly organised by ISRO, ASI & IAA.",
   },
   {
-    title: "IN-SPACe CanSat Satellite Milestone",
-    meta: "DIVISION 01 · ROCKETRY",
-    body: "Built with full 7-state flight FSM, LoRa telemetry backend, and Flask + SQLite ground station stack.",
+    title: "Project ARYA — InSpace Model Rocketry 2026",
+    meta: "CURRENT · ROCKETRY DIVISION",
+    body: "Single-stage launch vehicle carrying a 1 kg CAN-7USAT payload to 1000 m. Non-pyrotechnic electromagnetic separation, 3-of-3 apogee detection, custom Yagi telemetry, and reefed single-canopy recovery.",
+  },
+  {
+    title: "Project GARUDA — InSpace CanSat 2026",
+    meta: "CURRENT · CANSAT DIVISION",
+    body: "Autonomous 1 kg CanSat for environmental monitoring with real-time telemetry. PDR Qualified ✅, CDR Submitted ✅ — advancing to National Stage ⏳.",
   },
 ] as const;
 
@@ -132,66 +155,64 @@ export const SPONSOR_TIERS = [
   {
     name: "Subsonic Partner",
     tagline: "Start your journey with us",
-    price: "₹20k – ₹50k",
+    price: "₹10K – ₹25K",
     highlight: false,
     accent: "blue" as const,
     benefits: [
-      "Website logo",
-      "Social media thank you post",
-      "Small logo on team apparel",
-      "Logo placement on Rocket & Drone display banners",
-      "Logo on CanSat satellite hardware",
-    ],
-  },
-  {
-    name: "Transonic Partner",
-    tagline: "Breaking the sound barrier of innovation",
-    price: "₹50k – ₹1L",
-    highlight: true,
-    accent: "blue" as const,
-    benefits: [
-      "Website logo",
-      "Social media thank you post",
-      "Livestream overlay logo during rocket & drone tests",
-      "Blog / Instagram collaboration",
-      "Medium logo on team apparel",
-      "Medium logo on flight banners",
-      "Logo on Sounding Rocket & Autonomous Drone frames",
+      "Sponsorship Brochure",
+      "Website Recognition",
+      "Social Media Recognition",
+      "Standard banner at events & competitions",
+      "Sleeve / Side logo on official team T-shirt",
+      "Project Showcase / Display",
+      "Project Showcase Invitation",
+      "Certificate of Appreciation",
+      "Team Interaction",
     ],
   },
   {
     name: "Supersonic Partner",
-    tagline: "Accelerating beyond expectations",
-    price: "₹1L+",
+    tagline: "Breaking the sound barrier of innovation",
+    price: "₹25K – ₹50K",
     highlight: false,
     accent: "blue" as const,
     benefits: [
-      "Website logo",
-      "Social media thank you post",
-      "Livestream overlay logo during flight ops",
-      "Blog / Instagram collaboration",
-      "LinkedIn mentions",
-      "Prominent logo on team apparel",
-      "Prominent logo on event banners",
-      "Large logo on Sounding Rocket, Drone & CanSat hardware",
-      "Featured in flight test documentary videos",
-      '"Presented By" tagline',
+      "Sponsorship Brochure",
+      "Website Recognition",
+      "Social Media Recognition",
+      "Project Presentation access",
+      "Technical Reports & Publications",
+      "Prominent banner at events & competitions",
+      "Back logo on official team T-shirt",
+      "Project Showcase / Display",
+      "Secondary branding on Rocket & CanSat",
+      "Dedicated Social Media Post",
+      "Project Showcase Invitation",
+      "Certificate of Appreciation",
+      "Team Interaction",
     ],
   },
   {
-    name: "Title Aerospace Partner",
-    tagline: "Complete multi-division partnership",
-    price: "Custom Package",
-    highlight: false,
+    name: "Title Partner",
+    tagline: "Premium visibility across all platforms",
+    price: "> ₹50K",
+    highlight: true,
     accent: "violet" as const,
     benefits: [
-      "Title sponsor placement across both divisions",
-      "Dedicated social media campaign",
-      "Primary logo on Sounding Rockets, Drones & CanSat",
-      "Custom blog & video feature stories",
-      "Exclusive recruitment access to student engineering team",
-      "Primary logo on team apparel and launch gear",
-      "Live flight telemetry co-branding",
+      "Sponsorship Brochure",
+      "Featured Website Recognition",
+      "Featured Social Media Recognition",
+      "Project Presentation access",
+      "Technical Reports & Publications",
+      "Premium banner at events & competitions",
+      "Front logo on official team T-shirt",
+      "Prominent Project Showcase / Display",
+      "Primary branding on Rocket & CanSat",
+      "Prominent Mention at all events",
+      "Dedicated Social Media Post",
+      "Project Showcase Invitation",
+      "Certificate of Appreciation",
+      "Team Interaction",
     ],
   },
 ] as const;
@@ -286,18 +307,18 @@ export const ROCKETRY_DIVISION = {
   ],
   projects: [
     {
-      title: "SIRC Rocket Third Prize Space Kidz India",
+      title: "SIRC 2026 — 3rd Rank All India",
       tag: "Space Kidz India",
       description:
-        "SIRC Rocket project awarded THIRD PRIZE in Space Kidz India national competition. Successfully designed, fabricated, and launched with dual-deployment parachute recovery.",
+        "Competed at Southern India Rocketry Competition against 25+ national teams, securing 3rd Rank All India. Successfully designed, fabricated, and launched with dual-deployment parachute recovery.",
       status: "Completed",
     },
     {
-      title: "Vikram-1 High-Power Sounding Rocket",
-      tag: "Structures & Propulsion",
+      title: "Project ARYA — InSpace Model Rocketry 2026",
+      tag: "InSpace MRC 2026",
       description:
-        "Fiberglass composite airframe optimised for minimum drag with integrated fin-can, solid motor mount, and dual-stage altimeter ejection bay.",
-      status: "Upcoming",
+        "Single-stage launch vehicle carrying a 1 kg CAN-7USAT payload to 1000 m altitude. Features non-pyrotechnic electromagnetic separation, 3-of-3 apogee detection, custom Yagi telemetry, and a reefed single-canopy recovery system.",
+      status: "In Progress",
     },
     {
       title: "Flight Telemetry & Altimeter Module",
@@ -306,15 +327,9 @@ export const ROCKETRY_DIVISION = {
         "On-board data logger capturing 3-axis acceleration, barometric altitude, and GPS coordinates at 50 Hz streamed post-flight for trajectory reconstruction.",
       status: "Upcoming",
     },
-    {
-      title: "CanSat Satellite Structure",
-      tag: "CanSat",
-      description:
-        "A satellite-in-a-can mission carrying a sensor payload, LoRa telemetry, and a recovery system within 330 ml constraints.",
-      status: "Upcoming",
-    },
   ],
 } as const;
+
 
 export const DRONE_DIVISION = {
   eyebrow: "Division 02",
@@ -355,6 +370,56 @@ export const DRONE_DIVISION = {
   ],
 } as const;
 
+export const GARUDA_DIVISION = {
+  eyebrow: "Division 03",
+  heading: "CanSat — Project GARUDA",
+  subheading: "Autonomous environmental monitoring from altitude.",
+  description:
+    "Project GARUDA is Team Vikram's entry for the InSpace CanSat Competition 2026. An autonomous 1 kg CanSat system designed for environmental monitoring and real-time telemetry, featuring a comprehensive sensor suite, LoRa long-range radio, onboard aerial imaging, data logging, and a fully autonomous recovery system.",
+  focusAreas: [
+    "Altitude, pressure & temperature sensing",
+    "Humidity & orientation measurement",
+    "GNSS positioning",
+    "LoRa long-range telemetry",
+    "Onboard aerial imaging",
+    "Autonomous recovery system",
+  ],
+  milestones: [
+    { label: "PDR Qualified", status: "Completed" as const },
+    { label: "CDR Submitted", status: "Completed" as const },
+    { label: "National Stage", status: "In Progress" as const },
+  ],
+  projects: [
+    {
+      title: "CanSat Structure & Sensor Payload",
+      tag: "Hardware",
+      description:
+        "1 kg CanSat chassis meeting strict mass and volume constraints, integrating altitude, pressure, temperature, humidity, orientation, and GNSS sensors in a modular payload bay.",
+      status: "In Progress",
+    },
+    {
+      title: "LoRa Telemetry & Imaging System",
+      tag: "Avionics & Comms",
+      description:
+        "Long-range LoRa radio link for real-time environmental data telemetry with onboard camera for aerial imaging during descent.",
+      status: "In Progress",
+    },
+    {
+      title: "Autonomous Recovery & Ground Station",
+      tag: "Recovery & Software",
+      description:
+        "Autonomous parachute recovery with onboard data logging. Ground station dashboard for real-time monitoring and post-flight data analysis.",
+      status: "In Progress",
+    },
+  ],
+} as const;
+
+export const MENTOR_PARTNER = {
+  name: "Rocket Factory",
+  role: "Mentor Partner",
+  note: "Rocket Factory provides expert mentorship to Team Vikram across rocketry propulsion, vehicle design, and competition strategy — helping the team achieve national and international standards.",
+} as const;
+
 export const FAQ_ITEMS = [
   {
     q: "What is Rocketry, Drone, and CanSat?",
@@ -370,6 +435,6 @@ export const FAQ_ITEMS = [
   },
   {
     q: "Who should media inquiries contact?",
-    a: `Email ${SITE.email} with subject “Media” or use the contact form we typically respond within 2 business days.`,
+    a: `Email ${SITE.email} with subject "Media" or use the contact form we typically respond within 2 business days.`,
   },
 ] as const;
