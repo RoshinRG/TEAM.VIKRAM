@@ -5,7 +5,6 @@ import { useRef, useEffect } from "react";
 export function VideoBackground({ className }: { className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Permanently mute the video background and ensure continuous playback
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -15,24 +14,34 @@ export function VideoBackground({ className }: { className?: string }) {
 
     const tryPlay = () => {
       video.play().catch((e: DOMException) => {
-        // Ignore AbortError – browser paused video to save power (tab hidden/backgrounded).
-        // It will auto-resume when the page is visible again via the listener below.
-        if (e.name !== "AbortError") {
+        // AbortError  – browser paused (tab hidden / power saving). Will retry on visibility.
+        // NotSupportedError – browser has no supported codec for this source. Nothing to retry;
+        //   the video simply won't play on this device/browser (graceful degradation).
+        if (e.name !== "AbortError" && e.name !== "NotSupportedError" && e.name !== "NotAllowedError") {
           console.warn("Video background play failed:", e);
         }
       });
     };
 
-    tryPlay();
-
-    // Retry playback when the user returns to the tab
+    // Only attempt playback once the source is ready to avoid NotSupportedError loops.
+    const handleCanPlay = () => tryPlay();
     const handleVisibility = () => {
       if (document.visibilityState === "visible") tryPlay();
     };
+
+    video.addEventListener("canplay", handleCanPlay, { once: true });
     document.addEventListener("visibilitychange", handleVisibility);
 
+    // Trigger load now that the element is mounted (preload="none" delays network fetch).
+    video.load();
+
     return () => {
+      video.removeEventListener("canplay", handleCanPlay);
       document.removeEventListener("visibilitychange", handleVisibility);
+      // Pause and release the media resource to free memory on unmount.
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
     };
   }, []);
 
@@ -41,17 +50,18 @@ export function VideoBackground({ className }: { className?: string }) {
       aria-hidden
       className={`fixed inset-0 z-0 overflow-hidden pointer-events-none ${className ?? ""}`}
     >
-      {/* SpaceX Starship launch video - strictly muted */}
+      {/* Team Vikram rocket background video – strictly muted, gracefully skipped if codec unsupported */}
       <video
         ref={videoRef}
-        src="/videos/TeamVIkramrocket.mp4"
         autoPlay
         loop
         muted
         playsInline
-        preload="auto"
+        preload="none"
         className="absolute inset-0 h-full w-full object-cover scale-105 brightness-75 contrast-110"
-      />
+      >
+        <source src="/videos/TeamVIkramrocket.mp4" type="video/mp4" />
+      </video>
 
       {/* Cinematic vignette overlays */}
       <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.35)" }} />

@@ -1,6 +1,7 @@
 "use client";
 
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useRef } from "react";
+
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { useReducedMotion } from "framer-motion";
@@ -177,19 +178,13 @@ export function SolarSystemCanvas({ className }: { className?: string }) {
     );
   }
 
-  // THREE.Timer replaces the deprecated THREE.Clock (three >= 0.175)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const timer = useMemo(() => new (THREE as any).Timer(), []);
-
   return (
     <div className={className} aria-hidden>
       <Canvas
         camera={{ position: [0, 5.5, 7.5], fov: 45 }}
-        dpr={[1, 1.75]}
+        dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         style={{ width: "100%", height: "100%", background: "transparent" }}
-        // @ts-expect-error – clock/timer prop accepted at runtime by R3F 9.x
-        clock={timer}
       >
         <Suspense fallback={null}>
           <SolarSystemScene />
