@@ -7,7 +7,6 @@ import {
   useRef,
   useState,
   type CSSProperties,
-  type ElementType,
 } from "react";
 import {
   motion,
@@ -17,9 +16,11 @@ import {
 } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+type HeadingTagName = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div" | "span";
+
 export type MaskedHeadingProps = {
   text?: string;
-  tag?: keyof JSX.IntrinsicElements;
+  tag?: HeadingTagName;
   mediaType?: "image" | "video";
   src?: string;
   poster?: string;
@@ -142,7 +143,7 @@ export default function MaskedHeading({
   const textAlign =
     align === "left" ? "left" : align === "right" ? "right" : "center";
 
-  const HeadingTag = tag as ElementType;
+  const HeadingTag = tag;
   const fontSize = `clamp(2.5rem, ${textScale * 100}vw, 8.75rem)`;
 
   const wordVariants: Variants = {
