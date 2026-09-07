@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PerspectiveCarousel } from "@/components/ui/perspective-carousel";
 import { Box } from "@/components/ui/box";
 import { Reveal } from "@/components/ui/Reveal";
@@ -10,17 +11,11 @@ export const metadata: Metadata = {
   description: `Meet ${SITE.name} student engineers.`,
 };
 
-const MEMBER_MEDIA: Record<string, { video?: string }> = {
-  "Sanjay C": { video: "/videos/snajay.mp4" },
-};
-
-const carouselItems = TEAM_MEMBERS.map((m, i) => ({
-  src: `/images/member-${(i % 9) + 1}.svg`,
-  title: `${m.name} ${m.role}`,
+const carouselItems = TEAM_MEMBERS.filter((m) => m.photo).map((m) => ({
+  src: m.photo!,
+  title: `${m.name} · ${m.role}`,
   alt: `${m.name}, ${m.subsystem}`,
-  ...MEMBER_MEDIA[m.name],
 }));
-
 
 export default function TeamPage() {
   return (
@@ -91,7 +86,7 @@ export default function TeamPage() {
               className="h-170 text-white"
               viewportClassName="[mask-image:linear-gradient(to_right,transparent_0%,black_15%,black_85%,transparent_100%)]"
               labelClassName="font-mono text-xs tracking-wide text-white/80"
-              imageClassName="border border-white/20"
+              imageClassName="border border-white/20 bg-black/40 object-contain object-bottom p-2"
               controlsClassName="border-white/20 bg-black/60 text-white backdrop-blur-md"
             />
           </Reveal>
@@ -105,16 +100,29 @@ export default function TeamPage() {
               Roster
             </h2>
           </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {TEAM_MEMBERS.map((m, i) => (
-              <Reveal key={`${m.name}-${m.role}`} delay={i * 0.04}>
-                <Box>
-                  <p className="hud-label text-white/60">{m.group}</p>
-                  <h3 className="mt-2 font-display text-lg font-bold text-white">
-                    {m.name}
-                  </h3>
-                  <p className="text-sm text-white/90 font-medium">{m.role}</p>
-                  <p className="mt-1 text-xs text-white/65">{m.subsystem}</p>
+              <Reveal key={`${m.name}-${m.role}`} delay={i * 0.03}>
+                <Box flush className="overflow-hidden p-0!">
+                  {m.photo ? (
+                    <div className="relative flex aspect-3/4 items-end justify-center bg-linear-to-b from-black/20 to-black/70">
+                      <Image
+                        src={m.photo}
+                        alt={m.name}
+                        width={400}
+                        height={520}
+                        className="h-full w-full object-contain object-bottom p-3"
+                      />
+                    </div>
+                  ) : null}
+                  <div className="border-t border-white/10 p-4">
+                    <p className="hud-label text-white/60">{m.group}</p>
+                    <h3 className="mt-2 font-display text-lg font-bold text-white">
+                      {m.name}
+                    </h3>
+                    <p className="text-sm font-medium text-white/90">{m.role}</p>
+                    <p className="mt-1 text-xs text-white/65">{m.subsystem}</p>
+                  </div>
                 </Box>
               </Reveal>
             ))}
@@ -130,7 +138,7 @@ export default function TeamPage() {
               <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
                 {MENTOR.name}
               </h2>
-              <p className="mt-1 text-white/90 font-medium">{MENTOR.title}</p>
+              <p className="mt-1 font-medium text-white/90">{MENTOR.title}</p>
               <p className="text-sm text-white/70">{MENTOR.dept}</p>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/85">
                 {MENTOR.note}
@@ -143,7 +151,7 @@ export default function TeamPage() {
       <section className="section-pad" style={{ background: "rgba(0,0,0,0.45)" }}>
         <div className="container-mission">
           <Reveal>
-            <Box className="p-8! sm:p-10! border-l-2 border-l-white/60">
+            <Box className="border-l-2 border-l-white/60 p-8! sm:p-10!">
               <p className="hud-label mb-3 text-white/60">Mentor Partner</p>
               <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
                 {MENTOR_PARTNER.name}

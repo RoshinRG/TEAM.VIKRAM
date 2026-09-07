@@ -176,7 +176,7 @@ export function PerspectiveCarousel({
                         alt={item.alt ?? item.title}
                         draggable={false}
                         className={cn(
-                          "h-full w-full select-none rounded-sm object-cover shadow-xl shadow-black/40",
+                          "h-full w-full select-none rounded-sm object-contain object-bottom shadow-xl shadow-black/40",
                           imageClassName
                         )}
                       />
