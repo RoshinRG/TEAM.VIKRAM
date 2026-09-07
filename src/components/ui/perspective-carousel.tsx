@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 export interface PerspectiveCarouselItem {
   src: string;
   title: string;
+  subtitle?: string;
   alt?: string;
   /** Optional video to show instead of the image (path relative to /public) */
   video?: string;
@@ -26,6 +27,8 @@ export interface PerspectiveCarouselProps
   transition?: Transition;
   showControls?: boolean;
   showDots?: boolean;
+  /** Show caption label under the active slide */
+  showLabels?: boolean;
   viewportClassName?: string;
   slideClassName?: string;
   imageClassName?: string;
@@ -54,6 +57,7 @@ export function PerspectiveCarousel({
   transition = DEFAULT_TRANSITION,
   showControls = true,
   showDots = true,
+  showLabels = true,
   viewportClassName,
   slideClassName,
   imageClassName,
@@ -176,23 +180,37 @@ export function PerspectiveCarousel({
                         alt={item.alt ?? item.title}
                         draggable={false}
                         className={cn(
-                          "h-full w-full select-none rounded-sm object-contain object-bottom shadow-xl shadow-black/40",
+                          "h-full w-full select-none rounded-sm object-cover object-[center_20%] shadow-xl shadow-black/40",
                           imageClassName
                         )}
                       />
                     )}
                   </button>
 
-                  <motion.p
-                    className={cn("whitespace-nowrap text-sm", labelClassName)}
-                    animate={{
-                      filter: isActive ? "blur(0px)" : "blur(2px)",
-                      opacity: isActive ? 1 : 0,
-                    }}
-                    transition={transition}
-                  >
-                    {item.title}
-                  </motion.p>
+                  {showLabels && (
+                    <motion.div
+                      className={cn(
+                        "pointer-events-none mt-2 min-h-14 w-full text-center",
+                        labelClassName
+                      )}
+                      animate={{ opacity: isActive ? 1 : 0 }}
+                      transition={transition}
+                      aria-hidden={!isActive}
+                    >
+                      {isActive && (
+                        <>
+                          <p className="font-display text-base font-bold leading-tight text-white sm:text-lg">
+                            {item.title}
+                          </p>
+                          {item.subtitle ? (
+                            <p className="mt-1 font-mono text-[10px] leading-snug tracking-wider text-white/70 sm:text-[11px]">
+                              {item.subtitle}
+                            </p>
+                          ) : null}
+                        </>
+                      )}
+                    </motion.div>
+                  )}
                 </motion.div>
               </div>
             );

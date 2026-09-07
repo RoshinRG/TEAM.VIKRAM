@@ -12,7 +12,28 @@ export function VideoBackground({ className }: { className?: string }) {
 
     video.muted = true;
     video.volume = 0;
-    video.play().catch((e) => console.warn("Video background play failed:", e));
+
+    const tryPlay = () => {
+      video.play().catch((e: DOMException) => {
+        // Ignore AbortError – browser paused video to save power (tab hidden/backgrounded).
+        // It will auto-resume when the page is visible again via the listener below.
+        if (e.name !== "AbortError") {
+          console.warn("Video background play failed:", e);
+        }
+      });
+    };
+
+    tryPlay();
+
+    // Retry playback when the user returns to the tab
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") tryPlay();
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
   }, []);
 
   return (

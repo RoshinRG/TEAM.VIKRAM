@@ -20,7 +20,7 @@ export function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-transparent">
+    <section className="relative flex min-h-svh items-end overflow-hidden bg-transparent">
       {/* Strong bottom-to-mid gradient so hero text pops over the video */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -37,16 +37,16 @@ export function Hero() {
       />
 
       {/* 3D Solar System canvas framed on the right */}
-      <div className="pointer-events-none absolute inset-y-[8%] right-0 z-[1] hidden w-[45%] max-w-lg md:block lg:right-[3%] lg:max-w-xl">
+      <div className="pointer-events-none absolute inset-y-[8%] right-0 z-1 hidden w-[45%] max-w-lg md:block lg:right-[3%] lg:max-w-xl">
         <SolarSystemCanvas className="h-full w-full opacity-95" />
       </div>
 
       {!reduce && (
         <div
-          className="pointer-events-none absolute inset-0 z-[2] overflow-hidden opacity-20"
+          className="pointer-events-none absolute inset-0 z-2 overflow-hidden opacity-20"
           aria-hidden
         >
-          <div className="absolute inset-x-0 h-24 animate-scan bg-gradient-to-b from-transparent via-indigo/40 to-transparent" />
+          <div className="absolute inset-x-0 h-24 animate-scan bg-linear-to-b from-transparent via-indigo/40 to-transparent" />
         </div>
       )}
 
@@ -64,7 +64,7 @@ export function Hero() {
           <h1 className="sr-only">
             Team Vikram {SITE.tagline}
           </h1>
-          <div className="max-w-[200px] sm:max-w-[260px] md:max-w-[320px]">
+          <div className="max-w-50 sm:max-w-65 md:max-w-[320px]">
             <BrandLogo fillWidth linked={false} priority />
           </div>
           <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.35em] text-white/70">
@@ -130,7 +130,7 @@ export function Hero() {
         </motion.div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-32 bg-gradient-to-t from-void to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-2 h-32 bg-linear-to-t from-void to-transparent" />
     </section>
   );
 }

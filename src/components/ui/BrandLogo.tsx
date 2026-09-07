@@ -27,6 +27,7 @@ export function BrandLogo({
       width={512}
       height={512}
       priority={priority}
+      loading={priority ? "eager" : "lazy"}
       className={cn(
         "h-auto w-full object-contain object-center mix-blend-screen",
         className
@@ -39,6 +40,7 @@ export function BrandLogo({
       width={512}
       height={512}
       priority={priority}
+      loading={priority ? "eager" : "lazy"}
       className={cn(
         "object-contain object-center mix-blend-screen",
         className

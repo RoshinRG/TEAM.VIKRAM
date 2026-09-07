@@ -20,7 +20,7 @@ export function CtaBand() {
     <section className="section-pad relative overflow-hidden border-t border-white/10" style={{ background: "rgba(0,0,0,0.6)" }}>
       <div className="container-mission relative">
         <Reveal>
-          <Box className="flex flex-col items-start justify-between gap-10 !p-8 sm:!p-12 lg:flex-row lg:items-center" glow>
+          <Box className="flex flex-col items-start justify-between gap-10 p-8! sm:p-12! lg:flex-row lg:items-center" glow>
             <div className="max-w-xl">
               <p className="hud-label mb-3 text-white/70">Join the mission</p>
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">

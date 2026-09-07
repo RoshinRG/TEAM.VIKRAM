@@ -121,6 +121,13 @@ export type TeamMember = {
   github?: string;
 };
 
+/** Founding leads shown in the team page carousel */
+export const TEAM_CAROUSEL_MEMBERS = [
+  "Simran Yadav",
+  "Vijay Ragavander B",
+  "Sanjay C",
+] as const;
+
 export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: "Simran Yadav",

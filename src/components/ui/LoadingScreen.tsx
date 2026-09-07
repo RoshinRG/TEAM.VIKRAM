@@ -36,7 +36,7 @@ export function LoadingScreen({
       className={cn(
         "relative flex flex-col items-center justify-center overflow-hidden bg-void px-6",
         isSplash
-          ? "fixed inset-0 z-[100] min-h-[100svh]"
+          ? "fixed inset-0 z-100 min-h-svh"
           : "min-h-[70vh] w-full py-24",
         className
       )}
@@ -53,15 +53,15 @@ export function LoadingScreen({
       />
 
       <div
-        className="pointer-events-none absolute left-1/2 top-[42%] h-[240px] w-[240px] -translate-x-1/2 -translate-y-1/2 sm:h-[300px] sm:w-[300px]"
+        className="pointer-events-none absolute left-1/2 top-[38%] h-80 w-80 -translate-x-1/2 -translate-y-1/2 sm:h-112 sm:w-md"
         aria-hidden
       >
         <div className="absolute inset-0 rounded-full border border-moon/10" />
         <div className="loading-orbit absolute inset-0 rounded-full border border-transparent border-t-moon/40 border-r-frost/20" />
       </div>
 
-      <div className="relative z-10 flex w-full max-w-sm flex-col items-center text-center">
-        <div className="relative mb-8 w-full max-w-[180px] drop-shadow-[0_0_24px_rgba(255,255,255,0.12)] sm:max-w-[210px]">
+      <div className="relative z-10 flex w-full max-w-lg flex-col items-center text-center">
+        <div className="relative mb-8 w-full max-w-70 drop-shadow-[0_0_28px_rgba(255,255,255,0.16)] sm:max-w-95 md:max-w-115">
           <BrandLogo fillWidth linked={false} priority />
         </div>
 
@@ -100,11 +100,11 @@ export function LoadingScreen({
           <div className="h-1 w-full overflow-hidden border border-moon/15 bg-moon/5">
             {pct !== null ? (
               <div
-                className="h-full bg-gradient-to-r from-surface-elev via-frost-muted to-moon/70 transition-[width] duration-150 ease-out"
+                className="h-full bg-linear-to-r from-surface-elev via-frost-muted to-moon/70 transition-[width] duration-150 ease-out"
                 style={{ width: `${pct}%` }}
               />
             ) : (
-              <div className="loading-bar h-full w-1/3 bg-gradient-to-r from-surface-elev via-frost-muted to-moon/80" />
+              <div className="loading-bar h-full w-1/3 bg-linear-to-r from-surface-elev via-frost-muted to-moon/80" />
             )}
           </div>
         </div>

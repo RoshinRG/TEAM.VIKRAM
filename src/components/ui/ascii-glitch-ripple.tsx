@@ -30,7 +30,9 @@ export function AsciiGlitchRipple({
   spread = 1.0,
   ...props
 }: AsciiGlitchRippleProps) {
-  const Component = as as React.ElementType;
+  const Component = as as React.ComponentType<
+    React.HTMLAttributes<HTMLElement> & { ref?: React.Ref<HTMLElement> }
+  >;
   const elRef = useRef<HTMLElement>(null);
 
   const stateRef = useRef({

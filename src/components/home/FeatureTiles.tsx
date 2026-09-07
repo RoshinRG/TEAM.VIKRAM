@@ -47,7 +47,7 @@ export function FeatureTiles() {
             const Icon = div.icon;
             return (
               <Reveal key={div.id} delay={i * 0.08}>
-                <Box className="h-full !p-6 sm:!p-8">
+                <Box className="h-full p-6! sm:p-8!">
                   <div className="mb-6 flex items-center justify-between">
                     <Icon className="text-white/80" size={28} strokeWidth={1.5} />
                     <span className="font-mono text-[10px] tracking-[0.25em] text-white/50">

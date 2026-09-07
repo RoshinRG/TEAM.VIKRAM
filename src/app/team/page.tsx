@@ -4,18 +4,43 @@ import { PerspectiveCarousel } from "@/components/ui/perspective-carousel";
 import { Box } from "@/components/ui/box";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { MENTOR, MENTOR_PARTNER, ABOUT, SITE, TEAM_MEMBERS } from "@/lib/data";
+import {
+  MENTOR,
+  MENTOR_PARTNER,
+  ABOUT,
+  SITE,
+  TEAM_CAROUSEL_MEMBERS,
+  TEAM_MEMBERS,
+} from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Team",
   description: `Meet ${SITE.name} student engineers.`,
 };
 
-const carouselItems = TEAM_MEMBERS.filter((m) => m.photo).map((m) => ({
+const carouselItems = TEAM_MEMBERS.filter(
+  (m) => m.photo && TEAM_CAROUSEL_MEMBERS.includes(m.name as (typeof TEAM_CAROUSEL_MEMBERS)[number])
+).map((m) => ({
   src: m.photo!,
-  title: `${m.name} · ${m.role}`,
-  alt: `${m.name}, ${m.subsystem}`,
+  title: m.name,
+  subtitle: m.role,
+  alt: m.name,
 }));
+
+function MemberPhoto({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative aspect-3/4 overflow-hidden bg-black">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        unoptimized
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+        className="object-cover object-[center_20%]"
+      />
+    </div>
+  );
+}
 
 export default function TeamPage() {
   return (
@@ -75,18 +100,18 @@ export default function TeamPage() {
       <section className="section-pad py-10! border-b border-white/10 carbon-fiber">
         <div className="container-mission">
           <Reveal>
-            <p className="hud-label mb-6 text-center text-white/70">Crew carousel</p>
+            <p className="hud-label mb-6 text-center text-white/70">Founding leads</p>
           </Reveal>
           <Reveal delay={0.08}>
             <PerspectiveCarousel
               items={carouselItems}
-              defaultActiveIndex={Math.min(2, carouselItems.length - 1)}
+              defaultActiveIndex={1}
               slideWidth={280}
               loop
-              className="h-170 text-white"
+              showLabels
+              className="h-190 text-white"
               viewportClassName="[mask-image:linear-gradient(to_right,transparent_0%,black_15%,black_85%,transparent_100%)]"
-              labelClassName="font-mono text-xs tracking-wide text-white/80"
-              imageClassName="border border-white/20 bg-black/40 object-contain object-bottom p-2"
+              imageClassName="border border-white/15 bg-black"
               controlsClassName="border-white/20 bg-black/60 text-white backdrop-blur-md"
             />
           </Reveal>
@@ -104,17 +129,7 @@ export default function TeamPage() {
             {TEAM_MEMBERS.map((m, i) => (
               <Reveal key={`${m.name}-${m.role}`} delay={i * 0.03}>
                 <Box flush className="overflow-hidden p-0!">
-                  {m.photo ? (
-                    <div className="relative flex aspect-3/4 items-end justify-center bg-linear-to-b from-black/20 to-black/70">
-                      <Image
-                        src={m.photo}
-                        alt={m.name}
-                        width={400}
-                        height={520}
-                        className="h-full w-full object-contain object-bottom p-3"
-                      />
-                    </div>
-                  ) : null}
+                  {m.photo ? <MemberPhoto src={m.photo} alt={m.name} /> : null}
                   <div className="border-t border-white/10 p-4">
                     <p className="hud-label text-white/60">{m.group}</p>
                     <h3 className="mt-2 font-display text-lg font-bold text-white">

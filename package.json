@@ -1,6 +1,7 @@
 {
   "name": "team-vikram",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -34,8 +35,5 @@
     "postcss": "^8.5.26",
     "tailwindcss": "^4.3.3",
     "typescript": "^7"
-  },
-  "allowScripts": {
-    "unrs-resolver@1.12.2": true
   }
 }
