@@ -50,7 +50,7 @@ export function CountdownTimer() {
       ];
 
   return (
-    <Box className="w-full max-w-md !p-0" flush>
+    <Box className="w-full max-w-md p-0!" flush>
       <div className="flex items-center justify-between border-b border-moon/15 px-4 py-2">
         <span className="hud-label">T− Countdown</span>
         <span className="flex items-center gap-1.5">
