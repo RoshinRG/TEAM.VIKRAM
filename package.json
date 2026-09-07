@@ -30,10 +30,16 @@
     "@types/react-dom": "^19",
     "@types/three": "^0.185.4",
     "autoprefixer": "^10.5.4",
-    "eslint": "^10",
+    "eslint": "^9",
     "eslint-config-next": "16.3.1",
     "postcss": "^8.5.26",
     "tailwindcss": "^4.3.3",
     "typescript": "^7"
+  },
+  "overrides": {
+    "eslint-config-next": {
+      "eslint": "$eslint",
+      "typescript": "$typescript"
+    }
   }
 }
