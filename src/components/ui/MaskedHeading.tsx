@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type ElementType,
 } from "react";
 import {
   motion,
@@ -143,7 +144,7 @@ export default function MaskedHeading({
   const textAlign =
     align === "left" ? "left" : align === "right" ? "right" : "center";
 
-  const HeadingTag = tag;
+  const HeadingTag = tag as ElementType;
   const fontSize = `clamp(2.5rem, ${textScale * 100}vw, 8.75rem)`;
 
   const wordVariants: Variants = {

@@ -2,6 +2,8 @@
 
 import { useRef, useEffect } from "react";
 
+const BACKGROUND_SRC = "/videos/TeamVikram.mp4";
+
 export function VideoBackground({ className }: { className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -10,38 +12,29 @@ export function VideoBackground({ className }: { className?: string }) {
     if (!video) return;
 
     video.muted = true;
+    video.defaultMuted = true;
     video.volume = 0;
 
     const tryPlay = () => {
-      video.play().catch((e: DOMException) => {
-        // AbortError  – browser paused (tab hidden / power saving). Will retry on visibility.
-        // NotSupportedError – browser has no supported codec for this source. Nothing to retry;
-        //   the video simply won't play on this device/browser (graceful degradation).
-        if (e.name !== "AbortError" && e.name !== "NotSupportedError" && e.name !== "NotAllowedError") {
-          console.warn("Video background play failed:", e);
-        }
-      });
+      if (video.paused) {
+        void video.play().catch(() => {
+          /* Autoplay or codec failure — poster remains visible. */
+        });
+      }
     };
 
-    // Only attempt playback once the source is ready to avoid NotSupportedError loops.
-    const handleCanPlay = () => tryPlay();
     const handleVisibility = () => {
       if (document.visibilityState === "visible") tryPlay();
     };
 
-    video.addEventListener("canplay", handleCanPlay, { once: true });
+    video.addEventListener("canplay", tryPlay);
     document.addEventListener("visibilitychange", handleVisibility);
-
-    // Trigger load now that the element is mounted (preload="none" delays network fetch).
-    video.load();
+    tryPlay();
 
     return () => {
-      video.removeEventListener("canplay", handleCanPlay);
+      video.removeEventListener("canplay", tryPlay);
       document.removeEventListener("visibilitychange", handleVisibility);
-      // Pause and release the media resource to free memory on unmount.
       video.pause();
-      video.removeAttribute("src");
-      video.load();
     };
   }, []);
 
@@ -50,18 +43,17 @@ export function VideoBackground({ className }: { className?: string }) {
       aria-hidden
       className={`fixed inset-0 z-0 overflow-hidden pointer-events-none ${className ?? ""}`}
     >
-      {/* Team Vikram rocket background video – strictly muted, gracefully skipped if codec unsupported */}
       <video
         ref={videoRef}
+        src={BACKGROUND_SRC}
         autoPlay
         loop
         muted
         playsInline
-        preload="none"
+        preload="auto"
+        poster="/images/masked-heading-nebula.png"
         className="absolute inset-0 h-full w-full object-cover scale-105 brightness-75 contrast-110"
-      >
-        <source src="/videos/TeamVIkramrocket.mp4" type="video/mp4" />
-      </video>
+      />
 
       {/* Cinematic vignette overlays */}
       <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.35)" }} />
