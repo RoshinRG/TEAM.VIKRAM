@@ -2,10 +2,7 @@
 
 import { useCallback, useRef, useEffect } from "react";
 
-// TeamVikram.mp4 is the path Vercel production already serves (200).
-// It now contains the same 720p rocket encode as TeamVikramrocket.mp4.
 const BACKGROUND_SOURCES = [
-  "/videos/TeamVikram.mp4",
   "/videos/TeamVikramrocket.mp4",
   "/videos/rocket-bg.mp4",
 ];
