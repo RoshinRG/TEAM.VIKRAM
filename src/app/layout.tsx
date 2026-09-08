@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { NotchNavbar } from "@/components/ui/notch-navbar";
 import { Footer } from "@/components/layout/Footer";
 import { VideoBackgroundClient } from "@/components/home/VideoBackgroundClient";
+import { ThreeTimerInit } from "@/components/ThreeTimerInit";
 import { SITE } from "@/lib/data";
 import "./globals.css";
 
@@ -73,6 +74,7 @@ export default function RootLayout({
         className={`${spaceGrotesk.variable} ${inter.variable} ${orbitron.variable} min-h-screen bg-transparent font-body antialiased`}
       >
         {/* Global SpaceX Starship background video with audio controls */}
+        <ThreeTimerInit />
         <VideoBackgroundClient className="fixed inset-0 z-0" />
         <NotchNavbar />
         <main className="relative z-10">{children}</main>

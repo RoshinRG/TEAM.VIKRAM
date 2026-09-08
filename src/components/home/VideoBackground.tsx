@@ -2,6 +2,8 @@
 
 import { useRef, useEffect } from "react";
 
+// Web-sized H.264 encode of TeamVikramrocket.mp4 — the 120MB source is Git LFS
+// and does not deploy as playable media on Vercel.
 const BACKGROUND_SOURCES = [
   "/videos/rocket-bg.mp4",
   "/videos/TeamVikram.mp4",
