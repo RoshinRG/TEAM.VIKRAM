@@ -1,11 +1,12 @@
 "use client";
 
-import { Suspense, useRef } from "react";
+import { createContext, useContext, Suspense, useRef } from "react";
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { useReducedMotion } from "framer-motion";
+import { useInView, useReducedMotion } from "framer-motion";
 import * as THREE from "three";
+import { useThreeTimer } from "@/lib/three-timer";
 
 interface PlanetData {
   name: string;
@@ -29,6 +30,8 @@ const PLANETS: PlanetData[] = [
   { name: "Neptune", color: "#4B70DD", size: 0.14, distance: 5.4, speed: 0.16 },
 ];
 
+const TimerContext = createContext<React.RefObject<THREE.Timer | null>>({ current: null });
+
 function OrbitRing({ distance }: { distance: number }) {
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]}>
@@ -40,11 +43,13 @@ function OrbitRing({ distance }: { distance: number }) {
 
 function Sun() {
   const sunRef = useRef<THREE.Mesh>(null);
+  const timerRef = useContext(TimerContext);
 
-  useFrame((_, delta) => {
-    if (sunRef.current) {
-      sunRef.current.rotation.y += delta * 0.15;
-    }
+  useFrame(() => {
+    const timer = timerRef.current;
+    if (!timer || !sunRef.current) return;
+    const delta = timer.getDelta();
+    sunRef.current.rotation.y += delta * 0.15;
   });
 
   return (
@@ -78,11 +83,14 @@ function PlanetItem({ planet }: { planet: PlanetData }) {
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Mesh>(null);
   const moonRef = useRef<THREE.Mesh>(null);
-  const elapsedRef = useRef(0);
+  const timerRef = useContext(TimerContext);
 
-  useFrame((_, delta) => {
-    elapsedRef.current += delta;
-    const elapsed = elapsedRef.current;
+  useFrame(() => {
+    const timer = timerRef.current;
+    if (!timer) return;
+    const delta = timer.getDelta();
+    const elapsed = timer.getElapsed();
+
     // Orbital movement
     if (groupRef.current) {
       groupRef.current.rotation.y = elapsed * planet.speed * 0.35;
@@ -140,30 +148,40 @@ function PlanetItem({ planet }: { planet: PlanetData }) {
 
 function SolarSystemScene() {
   const mainGroupRef = useRef<THREE.Group>(null);
+  const timerRef = useThreeTimer();
 
-  useFrame((_, delta) => {
+  useFrame(() => {
+    const timer = timerRef.current;
+    if (!timer) return;
+    // THREE.Timer update once per frame
+    timer.update();
+    const delta = timer.getDelta();
     if (mainGroupRef.current) {
       mainGroupRef.current.rotation.y += delta * 0.05;
     }
   });
 
   return (
-    <group ref={mainGroupRef} rotation={[0.35, 0, 0.1]}>
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[10, 15, 10]} intensity={1.2} />
-      <Sun />
-      {PLANETS.map((planet) => (
-        <group key={planet.name}>
-          <OrbitRing distance={planet.distance} />
-          <PlanetItem planet={planet} />
-        </group>
-      ))}
-    </group>
+    <TimerContext.Provider value={timerRef}>
+      <group ref={mainGroupRef} rotation={[0.35, 0, 0.1]}>
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[10, 15, 10]} intensity={1.2} />
+        <Sun />
+        {PLANETS.map((planet) => (
+          <group key={planet.name}>
+            <OrbitRing distance={planet.distance} />
+            <PlanetItem planet={planet} />
+          </group>
+        ))}
+      </group>
+    </TimerContext.Provider>
   );
 }
 
 export function SolarSystemCanvas({ className }: { className?: string }) {
   const reduce = useReducedMotion();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(containerRef, { margin: "120px" });
 
   if (reduce) {
     return (
@@ -179,8 +197,9 @@ export function SolarSystemCanvas({ className }: { className?: string }) {
   }
 
   return (
-    <div className={className} aria-hidden>
+    <div ref={containerRef} className={className} aria-hidden>
       <Canvas
+        frameloop={inView ? "always" : "never"}
         camera={{ position: [0, 5.5, 7.5], fov: 45 }}
         dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
@@ -191,7 +210,7 @@ export function SolarSystemCanvas({ className }: { className?: string }) {
           <OrbitControls
             enableZoom={false}
             enablePan={false}
-            autoRotate
+            autoRotate={inView}
             autoRotateSpeed={0.5}
             maxPolarAngle={Math.PI / 2}
             minPolarAngle={Math.PI / 6}
@@ -201,3 +220,4 @@ export function SolarSystemCanvas({ className }: { className?: string }) {
     </div>
   );
 }
+

@@ -162,7 +162,10 @@ export function AsciiGlitchRipple({
           return;
         }
 
-        el.textContent = genScrambledTxt(t);
+        const nextTxt = genScrambledTxt(t);
+        if (el.textContent !== nextTxt) {
+          el.textContent = nextTxt;
+        }
         localAnimId = requestAnimationFrame(animate);
         stateRef.current.animId = localAnimId;
       };
@@ -171,10 +174,20 @@ export function AsciiGlitchRipple({
       stateRef.current.animId = localAnimId;
     };
 
+    let lastWaveTime = 0;
     const startWave = () => {
+      const now = Date.now();
+      if (now - lastWaveTime < 60) return; // throttle wave generation to avoid stacking
+      lastWaveTime = now;
+
+      // Cap maximum active waves to 3 to prevent CPU spikes in calcWaveEffect
+      if (stateRef.current.waves.length >= 3) {
+        stateRef.current.waves.shift();
+      }
+
       stateRef.current.waves.push({
         startPos: stateRef.current.cursorPos,
-        startTime: Date.now(),
+        startTime: now,
         id: Math.random(),
       });
 

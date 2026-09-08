@@ -9,13 +9,15 @@ import {
   useGLTF,
 } from "@react-three/drei";
 import * as THREE from "three";
-import { useReducedMotion } from "framer-motion";
+import { useInView, useReducedMotion } from "framer-motion";
+import { useThreeTimer } from "@/lib/three-timer";
 
 // Preload for faster first render
 useGLTF.preload("/models/raptor-engine.glb", true);
 
 function RaptorModel() {
   const spinRef = useRef<THREE.Group>(null);
+  const timerRef = useThreeTimer();
   const { scene } = useGLTF("/models/raptor-engine.glb", true);
 
   // Clone so multiple instances don't share state
@@ -49,13 +51,14 @@ function RaptorModel() {
     });
   }, [cloned]);
 
-  const elapsedRef = useRef(0);
-
-  // Rotate around own Y-axis only spinRef sits at the centred origin
-  useFrame((_, delta) => {
+  // Rotate around own Y-axis using THREE.Timer API
+  useFrame(() => {
     if (!spinRef.current) return;
-    elapsedRef.current += delta;
-    spinRef.current.rotation.y = elapsedRef.current * 0.25;
+    const timer = timerRef.current;
+    if (!timer) return;
+    timer.update();
+    const delta = timer.getDelta();
+    spinRef.current.rotation.y += delta * 0.25;
   });
 
   // Structure: spinRef (rotation) → Center (re-centres bbox to origin) → scaled model
@@ -86,6 +89,7 @@ function RocketScene() {
         blur={2.8}
         far={4}
         color="#000000"
+        frames={1}
       />
       <Environment preset="city" />
     </>
@@ -94,6 +98,8 @@ function RocketScene() {
 
 export function InSpaceRocketCanvas({ className }: { className?: string }) {
   const reduce = useReducedMotion();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(containerRef, { margin: "120px" });
 
   if (reduce) {
     return (
@@ -109,8 +115,9 @@ export function InSpaceRocketCanvas({ className }: { className?: string }) {
   }
 
   return (
-    <div className={className} aria-hidden>
+    <div ref={containerRef} className={className} aria-hidden>
       <Canvas
+        frameloop={inView ? "always" : "never"}
         camera={{ position: [0, 0.5, 4.5], fov: 36 }}
         dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}

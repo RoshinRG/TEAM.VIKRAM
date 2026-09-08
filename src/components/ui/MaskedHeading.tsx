@@ -105,17 +105,24 @@ export default function MaskedHeading({
       py + dy
     }px), 0) scale(${fillScale})`;
 
-    if (!reduce && drift > 0) {
+    if (!reduce && drift > 0 && typeof document !== "undefined" && !document.hidden) {
       rafRef.current = requestAnimationFrame(tick);
     }
   }, [drift, fillScale, parallax, reduce]);
 
   useEffect(() => {
     tick();
+    const handleVisibility = () => {
+      if (typeof document !== "undefined" && !document.hidden && !reduce && drift > 0) {
+        tick();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      document.removeEventListener("visibilitychange", handleVisibility);
     };
-  }, [tick]);
+  }, [tick, reduce, drift]);
 
   const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (reduce || !parallax || !rootRef.current) return;
