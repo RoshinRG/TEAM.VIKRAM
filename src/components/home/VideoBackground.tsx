@@ -2,10 +2,7 @@
 
 import { useCallback, useRef, useEffect } from "react";
 
-const BACKGROUND_SOURCES = [
-  "/videos/TeamVikramrocket.mp4",
-  "/videos/rocket-bg.mp4",
-];
+const BACKGROUND_SRC = "/videos/TeamVikramrocket.mp4";
 
 export function VideoBackground({ className }: { className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -27,37 +24,16 @@ export function VideoBackground({ className }: { className?: string }) {
     const video = videoRef.current;
     if (!video) return;
 
-    let sourceIndex = 0;
-    let cancelled = false;
-
-    const loadSource = (index: number) => {
-      if (cancelled || index >= BACKGROUND_SOURCES.length) return;
-      sourceIndex = index;
-      video.src = BACKGROUND_SOURCES[index];
-      video.load();
-    };
-
-    const handleCanPlay = () => tryPlay();
-    const handleError = () => {
-      if (sourceIndex + 1 < BACKGROUND_SOURCES.length) {
-        loadSource(sourceIndex + 1);
-      }
-    };
     const handleVisibility = () => {
       if (document.visibilityState === "visible") tryPlay();
     };
 
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
-    video.addEventListener("canplay", handleCanPlay);
-    video.addEventListener("error", handleError);
     document.addEventListener("visibilitychange", handleVisibility);
-    loadSource(0);
+    tryPlay();
 
     return () => {
-      cancelled = true;
-      video.removeEventListener("canplay", handleCanPlay);
-      video.removeEventListener("error", handleError);
       document.removeEventListener("visibilitychange", handleVisibility);
       video.pause();
     };
@@ -70,6 +46,7 @@ export function VideoBackground({ className }: { className?: string }) {
     >
       <video
         ref={videoRef}
+        src={BACKGROUND_SRC}
         autoPlay
         loop
         muted
