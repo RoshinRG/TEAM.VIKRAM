@@ -122,13 +122,14 @@ export type TeamMember = {
 };
 
 /** Founding leads shown in the team page carousel */
-export const TEAM_CAROUSEL_MEMBERS = [
-  "Simran Yadav",
-  "Vijay Ragavander B",
-  "Sanjay C",
-] as const;
-
-export const TEAM_MEMBERS: TeamMember[] = [
+export const FOUNDING_LEADS: TeamMember[] = [
+  {
+    name: "Sanjay C",
+    role: "Drone Captain & Founder",
+    subsystem: "Autonomous UAV Platforms & Autonomous Avionics",
+    group: "Drone Tech",
+    photo: "/images/team/sanjay-c.png",
+  },
   {
     name: "Simran Yadav",
     role: "CanSat Lead (Founder)",
@@ -143,13 +144,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     group: "Rocketry",
     photo: "/images/team/vijay-ragavander-b.png",
   },
-  {
-    name: "Sanjay C",
-    role: "Drone Captain & Founder",
-    subsystem: "Autonomous UAV Platforms & Autonomous Avionics",
-    group: "Drone Tech",
-    photo: "/images/team/sanjay-c.png",
-  },
+];
+
+export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: "Manjari V",
     role: "Model Rocketry Member",

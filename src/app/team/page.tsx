@@ -9,7 +9,7 @@ import {
   MENTOR_PARTNER,
   ABOUT,
   SITE,
-  TEAM_CAROUSEL_MEMBERS,
+  FOUNDING_LEADS,
   TEAM_MEMBERS,
 } from "@/lib/data";
 
@@ -18,9 +18,7 @@ export const metadata: Metadata = {
   description: `Meet ${SITE.name} student engineers.`,
 };
 
-const carouselItems = TEAM_MEMBERS.filter(
-  (m) => m.photo && TEAM_CAROUSEL_MEMBERS.includes(m.name as (typeof TEAM_CAROUSEL_MEMBERS)[number])
-).map((m) => ({
+const carouselItems = FOUNDING_LEADS.filter((m) => m.photo).map((m) => ({
   src: m.photo!,
   title: m.name,
   subtitle: m.role,
@@ -105,7 +103,7 @@ export default function TeamPage() {
           <Reveal delay={0.08}>
             <PerspectiveCarousel
               items={carouselItems}
-              defaultActiveIndex={1}
+              defaultActiveIndex={0}
               slideWidth={280}
               loop
               showLabels

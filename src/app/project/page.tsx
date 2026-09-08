@@ -15,7 +15,6 @@ import { Box } from "@/components/ui/box";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import {
-  MISSION_LOG,
   SITE,
   ROCKETRY_DIVISION,
   DRONE_DIVISION,
@@ -196,21 +195,21 @@ export default function ProjectPage() {
                 href="#rocketry"
                 className="font-mono text-sm tracking-wider text-white/90 hover:text-white"
               >
-                Rocketry →
+                Rocketry
               </AsciiGlitchRipple>
               <AsciiGlitchRipple
                 as="a"
                 href="#cansat"
                 className="font-mono text-sm tracking-wider text-white/90 hover:text-white"
               >
-                CanSat / GARUDA →
+                CanSat / GARUDA
               </AsciiGlitchRipple>
               <AsciiGlitchRipple
                 as="a"
                 href="#drone"
                 className="font-mono text-sm tracking-wider text-white/90 hover:text-white"
               >
-                Drone Tech →
+                Drone Tech
               </AsciiGlitchRipple>
             </div>
           </Reveal>
@@ -264,49 +263,6 @@ export default function ProjectPage() {
         accentBorder="border-sky-500/40"
         accentText="text-sky-400"
       />
-
-      {/* ── Build Log ───────────────────────────────────────────── */}
-      <section
-        id="build-log"
-        className="section-pad border-b border-moon/10 bg-surface-deep/50"
-      >
-        <div className="container-mission">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Mission log"
-              title="Build & flight gallery"
-              description="Captioned milestones from concept freeze through drop tests. Replace placeholders with real photos."
-            />
-          </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {MISSION_LOG.map((entry, i) => (
-              <Reveal key={entry.title} delay={i * 0.05}>
-                <Box flush className="overflow-hidden p-0!">
-                  <div className="relative flex aspect-16/10 items-center justify-center bg-linear-to-br from-indigo/30 to-void">
-                    <div className="absolute inset-0 grid-overlay opacity-50" />
-                    <span className="relative font-mono text-[10px] tracking-[0.25em] text-moon/40">
-                      IMG_LOG_{String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <div className="border-t border-moon/15 p-4">
-                    <div className="flex items-center justify-between gap-2">
-                      <h3 className="font-display text-base font-bold text-frost">
-                        {entry.title}
-                      </h3>
-                      <span className="shrink-0 font-mono text-[10px] tracking-wider text-indigo-glow">
-                        {entry.date}
-                      </span>
-                    </div>
-                    <p className="mt-2 text-xs leading-relaxed text-moon/70">
-                      {entry.caption}
-                    </p>
-                  </div>
-                </Box>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── Telemetry Demo ──────────────────────────────────────── */}
       <section className="section-pad border-b border-moon/10">
