@@ -3,9 +3,11 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
+const MISSION_VIDEO_SRC = "/videos/TeamVikram.mp4";
+
 export function MissionVideo() {
   return (
-    <section className="section-pad relative border-t border-moon/10 bg-surface-deep/40">
+    <section className="section-pad relative border-t border-moon/10 bg-void">
       <div className="pointer-events-none absolute inset-0 grid-overlay opacity-30" aria-hidden />
       <div className="container-mission relative">
         <Reveal>
@@ -21,18 +23,18 @@ export function MissionVideo() {
             <div className="flex items-center justify-between border-b border-moon/15 px-4 py-2">
               <span className="hud-label">REC · TEAM VIKRAM</span>
               <span className="font-mono text-[10px] tracking-wider text-moon/50">
-                /videos/TeamVikram.mp4
+                {MISSION_VIDEO_SRC}
               </span>
             </div>
-            <div className="relative aspect-video w-full bg-void">
+            <div className="relative aspect-video w-full bg-black">
               <video
+                key={MISSION_VIDEO_SRC}
+                src={MISSION_VIDEO_SRC}
                 className="h-full w-full object-cover"
                 controls
                 playsInline
                 preload="metadata"
-                poster="/images/masked-heading-nebula.png"
               >
-                <source src="/videos/TeamVikram.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
