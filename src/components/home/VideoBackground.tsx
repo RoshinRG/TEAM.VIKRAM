@@ -2,7 +2,10 @@
 
 import { useRef, useEffect } from "react";
 
-const BACKGROUND_SRC = "/videos/TeamVikramrocket.mp4";
+const BACKGROUND_SOURCES = [
+  "/videos/rocket-bg.mp4",
+  "/videos/TeamVikram.mp4",
+];
 
 export function VideoBackground({ className }: { className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -11,28 +14,48 @@ export function VideoBackground({ className }: { className?: string }) {
     const video = videoRef.current;
     if (!video) return;
 
+    let sourceIndex = 0;
+    let cancelled = false;
+
     video.muted = true;
     video.defaultMuted = true;
     video.volume = 0;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
 
     const tryPlay = () => {
-      if (video.paused) {
-        void video.play().catch(() => {
-          /* Autoplay or codec failure — poster remains visible. */
-        });
-      }
+      if (cancelled || !video.paused) return;
+      void video.play().catch(() => {
+        /* Autoplay or codec failure — poster remains visible. */
+      });
     };
 
+    const loadSource = (index: number) => {
+      if (cancelled || index >= BACKGROUND_SOURCES.length) return;
+      sourceIndex = index;
+      video.src = BACKGROUND_SOURCES[index];
+      video.load();
+    };
+
+    const handleCanPlay = () => tryPlay();
+    const handleError = () => {
+      if (sourceIndex + 1 < BACKGROUND_SOURCES.length) {
+        loadSource(sourceIndex + 1);
+      }
+    };
     const handleVisibility = () => {
       if (document.visibilityState === "visible") tryPlay();
     };
 
-    video.addEventListener("canplay", tryPlay);
+    video.addEventListener("canplay", handleCanPlay);
+    video.addEventListener("error", handleError);
     document.addEventListener("visibilitychange", handleVisibility);
-    tryPlay();
+    loadSource(0);
 
     return () => {
-      video.removeEventListener("canplay", tryPlay);
+      cancelled = true;
+      video.removeEventListener("canplay", handleCanPlay);
+      video.removeEventListener("error", handleError);
       document.removeEventListener("visibilitychange", handleVisibility);
       video.pause();
     };
@@ -45,7 +68,6 @@ export function VideoBackground({ className }: { className?: string }) {
     >
       <video
         ref={videoRef}
-        src={BACKGROUND_SRC}
         autoPlay
         loop
         muted
@@ -55,7 +77,6 @@ export function VideoBackground({ className }: { className?: string }) {
         className="absolute inset-0 h-full w-full object-cover scale-105 brightness-75 contrast-110"
       />
 
-      {/* Cinematic vignette overlays */}
       <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.35)" }} />
       <div
         className="absolute inset-0"
@@ -64,7 +85,6 @@ export function VideoBackground({ className }: { className?: string }) {
             "linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 45%, rgba(0,0,0,0.5) 100%)",
         }}
       />
-      {/* Subtle grid overlay */}
       <div className="absolute inset-0 grid-overlay opacity-25" />
     </div>
   );

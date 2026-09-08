@@ -2,4 +2,4 @@
 *.stl filter=lfs diff=lfs merge=lfs -text
 # Keep only oversized clips in LFS. Web-sized .mp4 files must be regular Git
 # blobs so Vercel deploys playable media (LFS pointers are not valid videos).
-public/videos/TeamVIkramrocket.mp4 filter=lfs diff=lfs merge=lfs -text
+public/videos/TeamVikramrocket.mp4 filter=lfs diff=lfs merge=lfs -text
