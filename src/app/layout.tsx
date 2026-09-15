@@ -60,6 +60,9 @@ export const metadata: Metadata = {
     description: SITE.tagline,
     images: ["/images/vikram-logo.png"],
   },
+  verification: {
+    google: "_HhJug2y9ga_KqIKp0gd6NC8DSW9kk6pJLXeTzkEUQM",
+  },
   robots: { index: true, follow: true },
 };
 
