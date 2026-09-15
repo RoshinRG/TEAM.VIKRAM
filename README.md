@@ -1,17 +1,26 @@
 # Team Vikram
 
-Cinematic aerospace marketing site for **Team Vikram** student CanSat team competing in IN-SPACe CanSat competitions.
+Cinematic aerospace website for **Team Vikram** — a student-led team from Rajalakshmi Engineering College competing in IN-SPACe Rocketry, CanSat, and Drone competitions.
 
-**Palette:** Galaxy Indigo (`#4B0082`) × Moonstone Silver (`#D0D3D6`) on void black (`#05070D`).
+**Design palette:** Frost (`#c8d8f0`) × Accent Blue (`#4f7ef8`) × Violet (`#7c3aed`) on Void Black (`#03040a`).
 
 ## Stack
 
-- Next.js 14 (App Router) + TypeScript
-- Tailwind CSS
-- Framer Motion + GSAP ScrollTrigger
-- Vengeance UI components: `NotchNavbar`, `AsciiGlitchRipple`, `PerspectiveCarousel`
-- Shared glass/metal `Box` panel
-- Formspree-ready contact form
+- **Next.js** (App Router) + TypeScript
+- **Vanilla CSS** via `globals.css` with Tailwind utility layer
+- **Google Fonts** — Orbitron (display) + Space Grotesk (body)
+- **Three.js** — 3D timer/animation init via `ThreeTimerInit`
+- **Formspree** / Google Apps Script — contact form backend
+
+## Pages
+
+| Route | File |
+| --- | --- |
+| `/` | `src/app/page.tsx` |
+| `/team` | `src/app/team/page.tsx` |
+| `/sponsorship` | `src/app/sponsorship/page.tsx` |
+| `/project` | `src/app/project/page.tsx` |
+| `/contact` | `src/app/contact/page.tsx` |
 
 ## Getting started
 
@@ -24,26 +33,47 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Configure content
 
-Edit placeholders in [`src/lib/data.ts`](src/lib/data.ts):
+All site data is centralised in [`src/lib/data.ts`](src/lib/data.ts):
 
-- Team member names, roles, photos
-- Institution / mentor
-- Stats, social links, email
-- Countdown target date
+- `SITE` — name, email, phone, socials, competition details
+- `TEAM_MEMBERS` / `FOUNDING_LEADS` — names, roles, photos, links
+- `MENTOR` — faculty advisor info
+- `SPONSOR_TIERS` — pricing and benefits per tier
+- `IMPACT_STATS`, `MISSION_HIGHLIGHTS`, `FEATURE_TILES`
+- `ROCKETRY_DIVISION`, `DRONE_DIVISION`, `GARUDA_DIVISION`
 
 ## Contact form
 
-1. Create a form at [formspree.io](https://formspree.io)
+1. Create a form at [formspree.io](https://formspree.io) **or** deploy a Google Apps Script endpoint
 2. Copy `.env.example` → `.env.local`
-3. Set `NEXT_PUBLIC_FORMSPREE_ID=your_id`
+3. Set the relevant variable:
+
+```env
+NEXT_PUBLIC_FORMSPREE_ID=your_formspree_id
+APPS_SCRIPT_URL=https://script.google.com/macros/s/...
+```
 
 Without an ID, the form simulates a successful submit (useful for local UI testing).
 
+## Static files (`public/`)
+
+| File | URL | Purpose |
+| --- | --- | --- |
+| `sitemap.xml` | `/sitemap.xml` | XML sitemap for search engines |
+| `robots.txt` | `/robots.txt` | Crawler directives + sitemap reference |
+| `images/` | `/images/...` | Team photos, logo, assets |
+
+## SEO
+
+- `sitemap.xml` covers all 5 routes with priorities and change frequencies
+- `robots.txt` allows all crawlers, blocks `/_next/` and `/api/`
+- Metadata (title, description, OG, Twitter card) is set in `src/app/layout.tsx`
+
 ## Deploy (Vercel)
 
-Connect the repo to Vercel, set env vars, and deploy. Bind is automatic via Next.js.
+Connect the repo to Vercel, set env vars, and deploy. Next.js App Router is auto-detected.
 
-Add optional PDFs:
+Optional assets to add:
 
-- `/public/sponsorship-deck.pdf`
-- `/public/docs/technical-report.pdf`
+- `public/sponsorship-deck.pdf`
+- `public/docs/technical-report.pdf`

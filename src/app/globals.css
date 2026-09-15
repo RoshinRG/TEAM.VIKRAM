@@ -113,7 +113,9 @@ body {
   }
 
   .text-balance {
-    text-wrap: balance;
+    @supports (text-wrap: balance) {
+      text-wrap: balance;
+    }
   }
 
   .grid-overlay {
@@ -165,6 +167,7 @@ body {
 
 @layer utilities {
   .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent);
     mask-image: linear-gradient(to bottom, black 60%, transparent);
   }
 
