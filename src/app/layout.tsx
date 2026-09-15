@@ -28,7 +28,7 @@ const orbitron = Orbitron({
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://teamvikram.example.com"),
+  metadataBase: new URL("https://www.teamvikram.in"),
   title: {
     default: `${SITE.name}`,
     template: `%s | ${SITE.name}`,
