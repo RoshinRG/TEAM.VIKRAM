@@ -75,7 +75,7 @@ export default function VideoWatchPage() {
         {/* Ambient background effects */}
         <div className="pointer-events-none absolute inset-0 grid-overlay opacity-30" aria-hidden />
         <div
-          className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-cyan-500/10 blur-[140px]"
+          className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-125 w-200 rounded-full bg-cyan-500/10 blur-[140px]"
           aria-hidden
         />
 
@@ -247,7 +247,7 @@ export default function VideoWatchPage() {
               </Reveal>
 
               <Reveal delay={0.25}>
-                <div className="rounded-lg border border-white/10 bg-white/[0.02] p-5">
+                <div className="rounded-lg border border-white/10 bg-white/2 p-5">
                   <h3 className="font-mono text-xs font-semibold tracking-wider text-moon/50 uppercase mb-3">
                     Mission Navigation
                   </h3>
