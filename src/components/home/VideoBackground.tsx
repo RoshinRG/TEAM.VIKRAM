@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useEffect } from "react";
 
-const BACKGROUND_SRC = "/videos/TeamVikramrocket.mp4?v=rocket-bg-2";
+const BACKGROUND_SRC = "/videos/TeamVikramrocket.mp4";
 
 export function VideoBackground({ className }: { className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
