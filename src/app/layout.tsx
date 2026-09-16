@@ -10,18 +10,21 @@ import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-space-grotesk",
   display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
   display: "swap",
 });
 
 const orbitron = Orbitron({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-orbitron",
   display: "swap",
 });
@@ -82,7 +85,12 @@ const organizationSchema = {
   "@type": "Organization",
   name: SITE.name,
   url: "https://www.teamvikram.in",
-  logo: "https://www.teamvikram.in/images/vikram-logo-icon.png",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://www.teamvikram.in/images/vikram-logo-icon.png",
+    width: 512,
+    height: 512,
+  },
   image: "https://www.teamvikram.in/images/vikram-logo-icon.png",
   sameAs: [
     SITE.socials.instagram,
@@ -97,6 +105,21 @@ const organizationSchema = {
   },
 };
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE.name,
+  url: "https://www.teamvikram.in",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://www.teamvikram.in/?q={search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -108,6 +131,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon-48x48.png" type="image/png" sizes="48x48" />
