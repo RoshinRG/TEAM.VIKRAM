@@ -46,22 +46,30 @@ export const metadata: Metadata = {
     "telemetry",
   ],
   icons: {
-    icon: [{ url: "/images/vikram-logo.png", type: "image/png" }],
-    apple: [{ url: "/images/vikram-logo.png" }],
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: ["/favicon.ico"],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
+  manifest: "/site.webmanifest",
   openGraph: {
     title: `${SITE.name}`,
     description: SITE.tagline,
     type: "website",
     locale: "en_IN",
     siteName: SITE.name,
-    images: [{ url: "/images/vikram-logo.png", width: 512, height: 512, alt: SITE.name }],
+    images: [{ url: "/images/vikram-logo-icon.png", width: 512, height: 512, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name}`,
     description: SITE.tagline,
-    images: ["/images/vikram-logo.png"],
+    images: ["/images/vikram-logo-icon.png"],
   },
   verification: {
     google: "_HhJug2y9ga_KqIKp0gd6NC8DSW9kk6pJLXeTzkEUQM",
@@ -77,6 +85,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-void text-frost" data-scroll-behavior="smooth">
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon-48x48.png" type="image/png" sizes="48x48" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        <link rel="manifest" href="/site.webmanifest" />
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
       </head>
       <body
