@@ -1,8 +1,8 @@
 User-agent: *
 Allow: /
-
-# Disallow Next.js internals
-Disallow: /_next/
+Allow: /_next/static/
+Allow: /_next/image/
 Disallow: /api/
 
 Sitemap: https://www.teamvikram.in/sitemap.xml
+Host: https://www.teamvikram.in

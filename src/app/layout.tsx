@@ -77,6 +77,26 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.name,
+  url: "https://www.teamvikram.in",
+  logo: "https://www.teamvikram.in/images/vikram-logo-icon.png",
+  image: "https://www.teamvikram.in/images/vikram-logo-icon.png",
+  sameAs: [
+    SITE.socials.instagram,
+    SITE.socials.linkedin,
+    SITE.socials.github,
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: SITE.email,
+    telephone: SITE.phone.split("/")[0].trim(),
+    contactType: "general inquiries",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -85,6 +105,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-void text-frost" data-scroll-behavior="smooth">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon-48x48.png" type="image/png" sizes="48x48" />
         <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
