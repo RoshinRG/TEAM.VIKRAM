@@ -34,6 +34,9 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description: SITE.tagline,
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "Team Vikram",
     "CanSat",
@@ -73,6 +76,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-void text-frost" data-scroll-behavior="smooth">
+      <head>
+        <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+      </head>
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${orbitron.variable} min-h-screen bg-transparent font-body antialiased`}
       >

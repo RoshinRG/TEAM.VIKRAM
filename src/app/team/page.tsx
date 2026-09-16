@@ -16,6 +16,9 @@ import {
 export const metadata: Metadata = {
   title: "Team",
   description: `Meet ${SITE.name} student engineers.`,
+  alternates: {
+    canonical: "/team",
+  },
 };
 
 const carouselItems = FOUNDING_LEADS.filter((m) => m.photo).map((m) => ({

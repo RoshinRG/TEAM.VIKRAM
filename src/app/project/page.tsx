@@ -27,6 +27,9 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Project",
   description: `Technical overview of ${SITE.name}'s Rocketry, CanSat, and Drone Technology divisions.`,
+  alternates: {
+    canonical: "/project",
+  },
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

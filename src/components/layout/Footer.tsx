@@ -40,6 +40,16 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/sitemap.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-white/40 transition hover:text-white"
+                >
+                  SITEMAP
+                </a>
+              </li>
             </ul>
           </div>
 

@@ -1,4 +1,5 @@
-import { Rocket, Plane, Satellite } from "lucide-react";
+import Link from "next/link";
+import { Rocket, Plane, Satellite, ArrowUpRight } from "lucide-react";
 import { Box } from "@/components/ui/box";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -47,23 +48,28 @@ export function FeatureTiles() {
             const Icon = div.icon;
             return (
               <Reveal key={div.id} delay={i * 0.08}>
-                <Box className="h-full p-6! sm:p-8!">
-                  <div className="mb-6 flex items-center justify-between">
-                    <Icon className="text-white/80" size={28} strokeWidth={1.5} />
-                    <span className="font-mono text-[10px] tracking-[0.25em] text-white/50">
-                      0{i + 1}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-2xl font-bold tracking-wide text-white">
-                    {div.title}
-                  </h3>
-                  <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-white/70">
-                    {div.subtitle}
-                  </p>
-                  <p className="mt-4 text-sm leading-relaxed text-white/85">
-                    {div.description}
-                  </p>
-                </Box>
+                <Link href="/project" className="group block h-full">
+                  <Box className="h-full p-6! sm:p-8! transition duration-300 group-hover:border-white/40">
+                    <div className="mb-6 flex items-center justify-between">
+                      <Icon className="text-white/80 transition group-hover:text-white" size={28} strokeWidth={1.5} />
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-[10px] tracking-[0.25em] text-white/50">
+                          0{i + 1}
+                        </span>
+                        <ArrowUpRight size={14} className="text-white/40 opacity-0 transition group-hover:opacity-100 group-hover:text-white" />
+                      </div>
+                    </div>
+                    <h3 className="font-display text-2xl font-bold tracking-wide text-white">
+                      {div.title}
+                    </h3>
+                    <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-white/70">
+                      {div.subtitle}
+                    </p>
+                    <p className="mt-4 text-sm leading-relaxed text-white/85">
+                      {div.description}
+                    </p>
+                  </Box>
+                </Link>
               </Reveal>
             );
           })}

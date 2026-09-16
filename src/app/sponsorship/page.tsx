@@ -11,6 +11,9 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Sponsorship",
   description: `Partner with ${SITE.name} for visibility at ${SITE.competition}.`,
+  alternates: {
+    canonical: "/sponsorship",
+  },
 };
 
 // ── Comparison table data ─────────────────────────────────────────────────────

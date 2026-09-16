@@ -16,6 +16,9 @@ import { SITE } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Contact",
   description: `Contact ${SITE.name} for sponsorship, media, or collaboration.`,
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 const socials = [
