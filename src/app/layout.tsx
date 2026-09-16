@@ -66,13 +66,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     siteName: SITE.name,
-    images: [{ url: "/images/vikram-logo-icon.png", width: 512, height: 512, alt: SITE.name }],
+    images: [{ url: "/images/vikram-logo.png", width: 512, height: 512, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name}`,
     description: SITE.tagline,
-    images: ["/images/vikram-logo-icon.png"],
+    images: ["/images/vikram-logo.png"],
   },
   verification: {
     google: "_HhJug2y9ga_KqIKp0gd6NC8DSW9kk6pJLXeTzkEUQM",
@@ -87,11 +87,11 @@ const organizationSchema = {
   url: "https://www.teamvikram.in",
   logo: {
     "@type": "ImageObject",
-    url: "https://www.teamvikram.in/images/vikram-logo-icon.png",
+    url: "https://www.teamvikram.in/images/vikram-logo.png",
     width: 512,
     height: 512,
   },
-  image: "https://www.teamvikram.in/images/vikram-logo-icon.png",
+  image: "https://www.teamvikram.in/images/vikram-logo.png",
   sameAs: [
     SITE.socials.instagram,
     SITE.socials.linkedin,
