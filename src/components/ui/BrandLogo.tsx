@@ -24,8 +24,8 @@ export function BrandLogo({
     <Image
       src="/images/logo-light.png"
       alt="Team Vikram"
-      width={512}
-      height={512}
+      width={1024}
+      height={1024}
       priority={priority}
       loading={priority ? "eager" : "lazy"}
       className={cn(
@@ -37,8 +37,8 @@ export function BrandLogo({
     <Image
       src="/images/logo-light.png"
       alt="Team Vikram"
-      width={512}
-      height={512}
+      width={1024}
+      height={1024}
       priority={priority}
       loading={priority ? "eager" : "lazy"}
       className={cn(
