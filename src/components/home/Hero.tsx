@@ -64,7 +64,7 @@ export function Hero() {
           <h1 className="sr-only">
             Team Vikram {SITE.tagline}
           </h1>
-          <div className="max-w-64 sm:max-w-80 md:max-w-[420px]">
+          <div className="max-w-64 sm:max-w-80 md:max-w-105">
             <BrandLogo fillWidth linked={false} priority />
           </div>
           <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.35em] text-white/70">
