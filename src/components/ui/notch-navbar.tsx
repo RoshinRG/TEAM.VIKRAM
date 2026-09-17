@@ -216,7 +216,7 @@ export function NotchNavbar({
               </button>
 
               <div className="mx-2 flex shrink-0 items-center justify-center md:mx-1">
-                {logo || <BrandLogo height={92} priority className="scale-110 sm:scale-125 transition-transform" />}
+                {logo || <BrandLogo height={64} priority />}
               </div>
 
               <nav className="hidden shrink-0 items-center gap-6 lg:flex">
