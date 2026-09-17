@@ -64,7 +64,7 @@ export function Hero() {
           <h1 className="sr-only">
             Team Vikram {SITE.tagline}
           </h1>
-          <div className="max-w-50 sm:max-w-65 md:max-w-[320px]">
+          <div className="max-w-64 sm:max-w-80 md:max-w-[420px]">
             <BrandLogo fillWidth linked={false} priority />
           </div>
           <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.35em] text-white/70">
@@ -82,7 +82,7 @@ export function Hero() {
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-white/90 backdrop-blur-sm">
               <Satellite size={13} strokeWidth={1.5} className="text-indigo-400" />
-              CanSat Satellite
+              CanSat
             </span>
           </div>
 

@@ -1,6 +1,6 @@
 export const SITE = {
   name: "Team Vikram",
-  tagline: "Rocketry, Drone Technology & CanSat Satellite Systems",
+  tagline: "Rocketry, Drone Technology & CanSat",
   email: "teamvikram@rajalakshmi.edu.in",
   phone: "+91 8610458302 / +91 73586 90685",
   website: "https://teamvikram.in",
@@ -133,7 +133,7 @@ export const FOUNDING_LEADS: TeamMember[] = [
   {
     name: "Simran Yadav",
     role: "CanSat Lead (Founder)",
-    subsystem: "CanSat Satellite Systems & Payload Architecture",
+    subsystem: "CanSat & Payload Architecture",
     group: "CanSat & Hardware",
     photo: "/images/team/simran-yadav.png",
   },
@@ -234,49 +234,49 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: "Ahamed Faisal",
     role: "CanSat Member",
-    subsystem: "CanSat Satellite Systems",
+    subsystem: "CanSat",
     group: "CanSat & Hardware",
     photo: "/images/team/ahamed-faisal.png",
   },
   {
     name: "Nithin Krishna R",
     role: "CanSat Member",
-    subsystem: "CanSat Satellite Systems",
+    subsystem: "CanSat",
     group: "CanSat & Hardware",
     photo: "/images/team/nithin-krishna-r.png",
   },
   {
     name: "Ashwinkumaar T",
     role: "CanSat Member",
-    subsystem: "CanSat Satellite Systems",
+    subsystem: "CanSat",
     group: "CanSat & Hardware",
     photo: "/images/team/ashwinkumaar-t.png",
   },
   {
     name: "Sharmila K",
     role: "CanSat Member",
-    subsystem: "CanSat Satellite Systems",
+    subsystem: "CanSat",
     group: "CanSat & Hardware",
     photo: "/images/team/sharmila-k.png",
   },
   {
     name: "Boomika MBG",
     role: "CanSat Member",
-    subsystem: "CanSat Satellite Systems",
+    subsystem: "CanSat",
     group: "CanSat & Hardware",
     photo: "/images/team/boomika-mbg.png",
   },
   {
     name: "Roshin R G",
     role: "CanSat Member",
-    subsystem: "CanSat Satellite Systems",
+    subsystem: "CanSat",
     group: "CanSat & Hardware",
     photo: "/images/team/roshin-r-g.png",
   },
   {
     name: "Tejasri Nanda Kishore",
     role: "CanSat Member",
-    subsystem: "CanSat Satellite Systems",
+    subsystem: "CanSat",
     group: "CanSat & Hardware",
     photo: "/images/team/tejasri-nanda-kishore.png",
   },
@@ -314,7 +314,7 @@ export const MENTOR = {
   name: "CHANDRASEKAR P",
   title: "Faculty Advisor & Aerospace Lead",
   dept: "Department of Aeronautical & Aerospace Engineering",
-  note: "Guiding Team Vikram across Rocketry propulsion, Autonomous Drone navigation, and CanSat satellite engineering for national aerospace competitions.",
+  note: "Guiding Team Vikram across Rocketry propulsion, Autonomous Drone navigation, and CanSat engineering for national aerospace competitions.",
 };
 
 export const SPONSOR_TIERS = [
@@ -403,7 +403,7 @@ export const SUBSYSTEMS = [
       "Multirotor frame design, PX4/ArduPilot flight controllers, GPS/IMU sensor fusion, and computer vision payload release mechanisms.",
   },
   {
-    title: "CanSat Satellite Structure",
+    title: "CanSat Structure",
     description:
       "Layered 330 ml can chassis meeting strict mass/volume constraints, with vibration isolation and modular payload bay.",
   },

@@ -16,6 +16,8 @@ export function MaskedMissionHeading() {
 
         <MaskedHeading
           text="Engineered for flight"
+          src="/videos/TeamVikramrocket.mp4"
+          mediaType="video"
           fillScale={1.25}
           parallax={26}
           reveal="rise"
