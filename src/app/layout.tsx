@@ -48,19 +48,39 @@ export const metadata: Metadata = {
     "aerospace",
     "telemetry",
   ],
+  icons: {
+    icon: [
+      {
+        url: "/images/logo-dark.png",
+        media: "(prefers-color-scheme: light)",
+        type: "image/png",
+      },
+      {
+        url: "/images/logo-light.png",
+        media: "(prefers-color-scheme: dark)",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: "/images/logo-light.png",
+        type: "image/png",
+      },
+    ],
+  },
   openGraph: {
     title: `${SITE.name}`,
     description: SITE.tagline,
     type: "website",
     locale: "en_IN",
     siteName: SITE.name,
-    images: [{ url: "/images/vikram-logo.png", width: 512, height: 512, alt: SITE.name }],
+    images: [{ url: "/images/logo-light.png", width: 512, height: 512, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name}`,
     description: SITE.tagline,
-    images: ["/images/vikram-logo.png"],
+    images: ["/images/logo-light.png"],
   },
   verification: {
     google: "_HhJug2y9ga_KqIKp0gd6NC8DSW9kk6pJLXeTzkEUQM",
@@ -75,11 +95,11 @@ const organizationSchema = {
   url: "https://www.teamvikram.in",
   logo: {
     "@type": "ImageObject",
-    url: "https://www.teamvikram.in/images/vikram-logo.png",
+    url: "https://www.teamvikram.in/images/logo-light.png",
     width: 512,
     height: 512,
   },
-  image: "https://www.teamvikram.in/images/vikram-logo.png",
+  image: "https://www.teamvikram.in/images/logo-light.png",
   sameAs: [
     SITE.socials.instagram,
     SITE.socials.linkedin,

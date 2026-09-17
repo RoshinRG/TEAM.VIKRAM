@@ -22,7 +22,7 @@ export function BrandLogo({
 }: BrandLogoProps) {
   const image = fillWidth ? (
     <Image
-      src="/images/vikram-logo.png"
+      src="/images/logo-light.png"
       alt="Team Vikram"
       width={512}
       height={512}
@@ -35,7 +35,7 @@ export function BrandLogo({
     />
   ) : (
     <Image
-      src="/images/vikram-logo.png"
+      src="/images/logo-light.png"
       alt="Team Vikram"
       width={512}
       height={512}
