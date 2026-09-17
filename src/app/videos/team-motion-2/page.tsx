@@ -15,7 +15,7 @@ const videoSchema = {
   "@type": "VideoObject",
   "name": "Team Vikram - Team Motion",
   "description": "Watch Team Vikram in motion — student aerospace engineering, high-power sounding rockets, autonomous UAV drones, and CanSat satellite payloads at Rajalakshmi Engineering College.",
-  "thumbnailUrl": "https://www.teamvikram.in/images/thumbnail.jpg",
+  "thumbnailUrl": "https://www.teamvikram.in/images/vikram-logo.png",
   "uploadDate": "2024-01-01T00:00:00+05:30",
   "contentUrl": "https://www.teamvikram.in/videos/TeamVikram.mp4",
   "embedUrl": "https://www.teamvikram.in/videos/team-motion-2",
@@ -45,10 +45,10 @@ export const metadata: Metadata = {
     ],
     images: [
       {
-        url: "/images/thumbnail.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Team Vikram - Team Motion 2 Video Thumbnail",
+        url: "/images/vikram-logo.png",
+        width: 512,
+        height: 512,
+        alt: "Team Vikram Logo",
       },
     ],
   },
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: "Team Vikram - Team Motion 2",
     description:
       "Watch Team Vikram in motion — student aerospace engineering, sounding rockets, UAV drones, and CanSat satellite systems.",
-    images: ["/images/thumbnail.jpg"],
+    images: ["/images/vikram-logo.png"],
   },
 };
 
@@ -127,7 +127,6 @@ export default function VideoWatchPage() {
               <div className="relative aspect-video w-full bg-black">
                 <video
                   src="https://www.teamvikram.in/videos/TeamVikram.mp4"
-                  poster="/images/thumbnail.jpg"
                   controls
                   autoPlay={false}
                   playsInline

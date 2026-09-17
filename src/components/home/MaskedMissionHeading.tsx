@@ -16,8 +16,6 @@ export function MaskedMissionHeading() {
 
         <MaskedHeading
           text="Engineered for flight"
-          src="/images/masked-heading-nebula.png"
-          mediaType="image"
           fillScale={1.25}
           parallax={26}
           reveal="rise"
