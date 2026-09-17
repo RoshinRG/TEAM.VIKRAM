@@ -50,22 +50,13 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: [
-      // Light mode browser tab → black logo (visible on white tab bar)
       {
-        url: "/images/logo-dark.png",
-        media: "(prefers-color-scheme: light)",
-        type: "image/png",
-        sizes: "512x512",
-      },
-      // Dark mode browser tab → white logo (visible on dark tab bar)
-      {
-        url: "/images/vikram-logo.png",
-        media: "(prefers-color-scheme: dark)",
+        url: "/images/TeamVikram.png",
         type: "image/png",
         sizes: "512x512",
       },
     ],
-    apple: [{ url: "/images/logo-dark.png", type: "image/png", sizes: "180x180" }],
+    apple: [{ url: "/images/TeamVikram.png", type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
     title: `${SITE.name}`,
