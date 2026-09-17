@@ -59,7 +59,7 @@ export const metadata: Metadata = {
       },
       // Dark mode browser tab → white logo (visible on dark tab bar)
       {
-        url: "/images/logo-light.png",
+        url: "/images/vikram-logo.png",
         media: "(prefers-color-scheme: dark)",
         type: "image/png",
         sizes: "512x512",
