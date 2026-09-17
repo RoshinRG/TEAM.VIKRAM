@@ -48,6 +48,25 @@ export const metadata: Metadata = {
     "aerospace",
     "telemetry",
   ],
+  icons: {
+    icon: [
+      // Light mode browser tab → black logo (visible on white tab bar)
+      {
+        url: "/images/logo-dark.png",
+        media: "(prefers-color-scheme: light)",
+        type: "image/png",
+        sizes: "512x512",
+      },
+      // Dark mode browser tab → white logo (visible on dark tab bar)
+      {
+        url: "/images/logo-light.png",
+        media: "(prefers-color-scheme: dark)",
+        type: "image/png",
+        sizes: "512x512",
+      },
+    ],
+    apple: [{ url: "/images/logo-dark.png", type: "image/png", sizes: "180x180" }],
+  },
   openGraph: {
     title: `${SITE.name}`,
     description: SITE.tagline,
