@@ -10,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: "https://www.teamvikram.in/sitemap.xml",
-    host: "https://www.teamvikram.in",
   };
 }
+

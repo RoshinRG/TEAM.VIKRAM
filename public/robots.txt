@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Allow: /_next/static/
-Disallow: /api/
-
-Sitemap: https://www.teamvikram.in/sitemap.xml
