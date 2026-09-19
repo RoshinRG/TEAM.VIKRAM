@@ -13,12 +13,17 @@ import { SITE } from "@/lib/data";
 const videoSchema = {
   "@context": "https://schema.org",
   "@type": "VideoObject",
-  "name": "Team Vikram - Team Motion",
-  "description": "Watch Team Vikram in motion — student aerospace engineering, high-power sounding rockets, autonomous UAV drones, and CanSat satellite payloads at Rajalakshmi Engineering College.",
-  "thumbnailUrl": "https://www.teamvikram.in/images/vikram-logo.png",
-  "uploadDate": "2024-01-01T00:00:00+05:30",
-  "contentUrl": "https://www.teamvikram.in/videos/TeamVikram.mp4",
-  "embedUrl": "https://www.teamvikram.in/videos/team-motion-2",
+  name: "Team Vikram - Team Motion",
+  description:
+    "Watch Team Vikram in motion — student aerospace engineering, high-power sounding rockets, autonomous UAV drones, and CanSat satellite payloads at Rajalakshmi Engineering College.",
+  thumbnailUrl: [
+    "https://www.teamvikram.in/images/vikram-logo.png",
+    "https://www.teamvikram.in/images/logo-light.png",
+  ],
+  uploadDate: "2024-01-01T00:00:00+05:30",
+  duration: "PT55S",
+  contentUrl: "https://www.teamvikram.in/videos/TeamVikram.mp4",
+  embedUrl: "https://www.teamvikram.in/videos/team-motion-2",
 };
 
 export const metadata: Metadata = {
