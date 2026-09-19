@@ -37,6 +37,13 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description: SITE.tagline,
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+  },
   alternates: {
     canonical: "/",
   },
