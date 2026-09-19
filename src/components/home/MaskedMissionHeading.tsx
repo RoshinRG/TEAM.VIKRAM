@@ -10,10 +10,6 @@ export function MaskedMissionHeading() {
       <div className="absolute inset-0 grid-overlay opacity-30" aria-hidden />
 
       <div className="container-mission relative section-pad py-16! sm:py-24!">
-        <Reveal>
-          <p className="hud-label mb-6 text-center">Mission signature</p>
-        </Reveal>
-
         <MaskedHeading
           text="Engineered for flight"
           src="/videos/TeamVikramrocket.mp4"

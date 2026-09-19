@@ -48,16 +48,6 @@ export const metadata: Metadata = {
     "aerospace",
     "telemetry",
   ],
-  icons: {
-    icon: [
-      {
-        url: "/images/TeamVikram.png",
-        type: "image/png",
-        sizes: "512x512",
-      },
-    ],
-    apple: [{ url: "/images/TeamVikram.png", type: "image/png", sizes: "180x180" }],
-  },
   openGraph: {
     title: `${SITE.name}`,
     description: SITE.tagline,
@@ -124,7 +114,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-void text-frost" data-scroll-behavior="smooth">
+    <html lang="en" className="bg-void text-frost" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

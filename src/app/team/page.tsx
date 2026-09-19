@@ -109,6 +109,8 @@ export default function TeamPage() {
               defaultActiveIndex={0}
               slideWidth={280}
               loop
+              autoPlay
+              autoPlayInterval={2800}
               showLabels
               className="h-190 text-white"
               viewportClassName="[mask-image:linear-gradient(to_right,transparent_0%,black_15%,black_85%,transparent_100%)]"

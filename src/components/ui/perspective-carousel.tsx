@@ -29,6 +29,10 @@ export interface PerspectiveCarouselProps
   showDots?: boolean;
   /** Show caption label under the active slide */
   showLabels?: boolean;
+  /** Auto-advance slides */
+  autoPlay?: boolean;
+  /** Interval in ms between auto-advances (default: 2800) */
+  autoPlayInterval?: number;
   viewportClassName?: string;
   slideClassName?: string;
   imageClassName?: string;
@@ -50,7 +54,7 @@ export function PerspectiveCarousel({
   activeIndex,
   defaultActiveIndex = 0,
   onActiveIndexChange,
-  loop = false,
+  loop = true,
   slideWidth = 200,
   rotationStep = 60,
   inactiveScale = 0.85,
@@ -58,6 +62,8 @@ export function PerspectiveCarousel({
   showControls = true,
   showDots = true,
   showLabels = true,
+  autoPlay = false,
+  autoPlayInterval = 2800,
   viewportClassName,
   slideClassName,
   imageClassName,
@@ -75,6 +81,7 @@ export function PerspectiveCarousel({
   const currentIndex = clamp(activeIndex ?? uncontrolledIndex, 0, maxIndex);
   const safeSlideWidth = Math.max(96, slideWidth);
   const safeInactiveScale = clamp(inactiveScale, 0.5, 1);
+  const pausedRef = React.useRef(false);
 
   const selectSlide = React.useCallback(
     (nextIndex: number) => {
@@ -92,6 +99,17 @@ export function PerspectiveCarousel({
     },
     [activeIndex, items.length, loop, maxIndex, onActiveIndexChange]
   );
+
+  // Auto-play
+  React.useEffect(() => {
+    if (!autoPlay || items.length < 2) return;
+    const id = setInterval(() => {
+      if (!pausedRef.current) {
+        selectSlide((activeIndex ?? uncontrolledIndex) + 1);
+      }
+    }, autoPlayInterval);
+    return () => clearInterval(id);
+  }, [autoPlay, autoPlayInterval, selectSlide, activeIndex, uncontrolledIndex, items.length]);
 
   if (!items.length) return null;
 
@@ -119,6 +137,8 @@ export function PerspectiveCarousel({
       aria-label="Perspective image carousel"
       tabIndex={tabIndex ?? 0}
       onKeyDown={handleKeyDown}
+      onMouseEnter={() => { pausedRef.current = true; }}
+      onMouseLeave={() => { pausedRef.current = false; }}
       className={cn("relative isolate h-full w-full overflow-hidden", className)}
       {...props}
     >
