@@ -12,16 +12,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/project`,
+      url: `${baseUrl}/team`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/team`,
+      url: `${baseUrl}/project`,
       lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/sponsorship`,
@@ -35,11 +35,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    {
-      url: `${baseUrl}/videos/team-motion-2`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
   ];
 }
+

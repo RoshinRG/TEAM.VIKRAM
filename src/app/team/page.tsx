@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/team",
   },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 const carouselItems = FOUNDING_LEADS.filter((m) => m.photo).map((m) => ({

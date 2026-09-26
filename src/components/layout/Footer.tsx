@@ -40,24 +40,6 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/videos/team-motion-2"
-                  className="text-sm text-cyan-400/80 transition hover:text-cyan-300"
-                >
-                  WATCH FILM
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="/sitemap.xml"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-white/40 transition hover:text-white"
-                >
-                  SITEMAP
-                </a>
-              </li>
             </ul>
           </div>
 
