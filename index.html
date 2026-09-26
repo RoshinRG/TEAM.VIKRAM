@@ -9,8 +9,23 @@
       name="description"
       content="Student-led aerospace engineering — Rocketry, Drone Tech & CanSat">
     <title>Team Vikram</title>
+    <style>
+      .circular-icon {
+        display: block;
+        width: 28px;
+        height: 28px;
+        /* Change this to a dark color so your white logo is visible */
+        background-color: #3c4043;
+        border-radius: 50%;
+        object-fit: contain; /* 'contain' is often better for logos to prevent cropping */
+        padding: 4px; /* Optional: adds space between your logo and the circle edge */
+      }
+    </style>
   </head>
   <body>
+    <div class="icon-container" aria-hidden="true">
+      <img class="circular-icon" src="/images/logo-light.png" alt="Team Vikram Logo">
+    </div>
     <div id="root"></div>
   </body>
 </html>
